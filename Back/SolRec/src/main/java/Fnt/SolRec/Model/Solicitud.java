@@ -1,5 +1,6 @@
 package Fnt.SolRec.Model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import javax.persistence.Entity;
@@ -10,19 +11,19 @@ public class Solicitud {
     @Id
     private int id;
     private int paciente;
-    private int id_personal;
-    private int id_equipamento;
-    private String tipo_personal;
-    private String tipo_equipamento;
+    private int idEquipo;
+    private String tipoEquipo;
+    private ArrayList<Integer> idEquipamento;
+    private int tipoEquipamento;
     private int sillon;
-    private int sala_rec;
+    private int salaRecuperacion;
     private int pabellon;
+    private ArrayList<String> bloques;
+    private String estado = "Solicitado";
     private String descripcion;
-    private String estado="Solicitado";
-    private ArrayList<Integer> horarios;
-
-
+    private LocalDateTime dtEmision;
     
+
 
     /**
      * @return int return the id
@@ -53,59 +54,59 @@ public class Solicitud {
     }
 
     /**
-     * @return int return the id_personal
+     * @return int return the idEquipo
      */
-    public int getId_personal() {
-        return id_personal;
+    public int getIdEquipo() {
+        return idEquipo;
     }
 
     /**
-     * @param id_personal the id_personal to set
+     * @param idEquipo the idEquipo to set
      */
-    public void setId_personal(int id_personal) {
-        this.id_personal = id_personal;
+    public void setIdEquipo(int idEquipo) {
+        this.idEquipo = idEquipo;
     }
 
     /**
-     * @return int return the id_equipamento
+     * @return String return the tipoEquipo
      */
-    public int getId_equipamento() {
-        return id_equipamento;
+    public String getTipoEquipo() {
+        return tipoEquipo;
     }
 
     /**
-     * @param id_equipamento the id_equipamento to set
+     * @param tipoEquipo the tipoEquipo to set
      */
-    public void setId_equipamento(int id_equipamento) {
-        this.id_equipamento = id_equipamento;
+    public void setTipoEquipo(String tipoEquipo) {
+        this.tipoEquipo = tipoEquipo;
     }
 
     /**
-     * @return String return the tipo_personal
+     * @return int return the idEquipamento
      */
-    public String getTipo_personal() {
-        return tipo_personal;
+    public ArrayList<Integer> getIdEquipamento() {
+        return idEquipamento;
     }
 
     /**
-     * @param tipo_personal the tipo_personal to set
+     * @param idEquipamento the idEquipamento to set
      */
-    public void setTipo_personal(String tipo_personal) {
-        this.tipo_personal = tipo_personal;
+    public void setIdEquipamento(ArrayList<Integer> idEquipamento) {
+        this.idEquipamento = idEquipamento;
     }
 
     /**
-     * @return String return the tipo_equipamento
+     * @return int return the tipoEquipamento
      */
-    public String getTipo_equipamento() {
-        return tipo_equipamento;
+    public int getTipoEquipamento() {
+        return tipoEquipamento;
     }
 
     /**
-     * @param tipo_equipamento the tipo_equipamento to set
+     * @param tipoEquipamento the tipoEquipamento to set
      */
-    public void setTipo_equipamento(String tipo_equipamento) {
-        this.tipo_equipamento = tipo_equipamento;
+    public void setTipoEquipamento(int tipoEquipamento) {
+        this.tipoEquipamento = tipoEquipamento;
     }
 
     /**
@@ -123,17 +124,17 @@ public class Solicitud {
     }
 
     /**
-     * @return int return the sala_rec
+     * @return int return the salaRecuperacion
      */
-    public int getSala_rec() {
-        return sala_rec;
+    public int getSalaRecuperacion() {
+        return salaRecuperacion;
     }
 
     /**
-     * @param sala_rec the sala_rec to set
+     * @param salaRecuperacion the salaRecuperacion to set
      */
-    public void setSala_rec(int sala_rec) {
-        this.sala_rec = sala_rec;
+    public void setSalaRecuperacion(int salaRecuperacion) {
+        this.salaRecuperacion = salaRecuperacion;
     }
 
     /**
@@ -151,6 +152,34 @@ public class Solicitud {
     }
 
     /**
+     * @return ArrayList<String> return the bloques
+     */
+    public ArrayList<String> getBloques() {
+        return bloques;
+    }
+
+    /**
+     * @param bloques the bloques to set
+     */
+    public void setBloques(ArrayList<String> bloques) {
+        this.bloques = bloques;
+    }
+
+    /**
+     * @return String return the estado
+     */
+    public String getEstado() {
+        return estado;
+    }
+
+    /**
+     * @param estado the estado to set
+     */
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    /**
      * @return String return the descripcion
      */
     public String getDescripcion() {
@@ -165,32 +194,17 @@ public class Solicitud {
     }
 
     /**
-     * @return ArrayList<Integer> return the horarios
+     * @return LocalDateTime return the dtEmision
      */
-    public ArrayList<Integer> getHorarios() {
-        return horarios;
+    public LocalDateTime getDtEmision() {
+        return dtEmision;
     }
 
     /**
-     * @param horarios the horarios to set
+     * @param dtEmision the dtEmision to set
      */
-    public void setHorarios(ArrayList<Integer> horarios) {
-        this.horarios = horarios;
-    }
-
-
-    /**
-     * @return String return the estado
-     */
-    public String getEstado() {
-        return estado;
-    }
-
-    /**
-     * @param estado the estado to set
-     */
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setDtEmision(LocalDateTime dtEmision) {
+        this.dtEmision = dtEmision;
     }
 
 }

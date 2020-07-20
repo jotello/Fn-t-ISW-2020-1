@@ -2,7 +2,9 @@ package Fnt.SolRec.Controller;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
+import org.hibernate.loader.custom.Return;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,9 +31,9 @@ public class SolicitudController {
 
     }
     @GetMapping("/{id}")
-    public Solicitud getSolicitudbyId(@PathVariable("id") int id){
-        Solicitud sol = 
-        return sol;
+    public Optional<Solicitud> getSolicitudbyId(@PathVariable("id") Long id){
+        return solicitudService.getbyId(id);
+        
     }
 
 

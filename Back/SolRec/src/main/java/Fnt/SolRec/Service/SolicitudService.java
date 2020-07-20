@@ -1,6 +1,9 @@
 package Fnt.SolRec.Service;
 
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import Fnt.SolRec.Model.Solicitud;
@@ -18,5 +21,7 @@ public class SolicitudService {
     public Iterable<Solicitud> listAll() {
         return solicitudRepository.findAll();
     }
-    
+    public Iterable<Solicitud> getSolicitudByEstado(List<String> estado) {
+        return solicitudRepository.findByEstado(estado);
+    }
 }

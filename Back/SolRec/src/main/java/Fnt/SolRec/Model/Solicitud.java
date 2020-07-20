@@ -9,7 +9,7 @@ import javax.persistence.Id;
 @Entity
 public class Solicitud {
     @Id
-    private int id;
+    private long id;
     private int paciente;
     private int idEquipo;
     private String tipoEquipo;

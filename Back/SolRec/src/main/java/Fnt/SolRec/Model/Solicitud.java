@@ -14,10 +14,13 @@ public class Solicitud {
     private int idEquipo;
     private String tipoEquipo;
     private ArrayList<Integer> idEquipamento;
-    private int tipoEquipamento;
+    private String tipoEquipamento;
     private int sillon;
+    private String tipoSillon;
     private int salaRecuperacion;
+    private String tipoSalaRecuperacion;
     private int pabellon;
+    private String tipoPabellon;
     private ArrayList<String> bloques;
     private String estado = "Solicitado";
     private String descripcion;

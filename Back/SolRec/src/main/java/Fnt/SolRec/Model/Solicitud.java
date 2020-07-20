@@ -25,14 +25,36 @@ public class Solicitud {
     private String estado = "Solicitado";
     private String descripcion;
     private LocalDateTime dtEmision;
-    
-
 
     /**
      * @return int return the id
      */
     public int getId() {
         return id;
+    }
+
+    public String getTipoSillon() {
+        return tipoSillon;
+    }
+
+    public void setTipoSillon(String tipoSillon) {
+        this.tipoSillon = tipoSillon;
+    }
+
+    public String getTipoSalaRecuperacion() {
+        return tipoSalaRecuperacion;
+    }
+
+    public void setTipoSalaRecuperacion(String tipoSalaRecuperacion) {
+        this.tipoSalaRecuperacion = tipoSalaRecuperacion;
+    }
+
+    public String getTipoPabellon() {
+        return tipoPabellon;
+    }
+
+    public void setTipoPabellon(String tipoPabellon) {
+        this.tipoPabellon = tipoPabellon;
     }
 
     /**
@@ -101,14 +123,14 @@ public class Solicitud {
     /**
      * @return int return the tipoEquipamento
      */
-    public int getTipoEquipamento() {
+    public String getTipoEquipamento() {
         return tipoEquipamento;
     }
 
     /**
      * @param tipoEquipamento the tipoEquipamento to set
      */
-    public void setTipoEquipamento(int tipoEquipamento) {
+    public void setTipoEquipamento(String tipoEquipamento) {
         this.tipoEquipamento = tipoEquipamento;
     }
 

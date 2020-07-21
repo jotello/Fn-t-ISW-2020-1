@@ -49,7 +49,14 @@ public class SolicitudController {
         
     }
 
-
+    /**
+     * 
+     *
+     * 
+     * Obtiene las solicitudes con estado pendiente
+     * 
+     * @return List<Solicitud>
+     */
     @GetMapping("/pendientes")
     public List<Solicitud> getPendientes() {
         List<String> list = Arrays.asList("Solicitado");

@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -12,8 +13,8 @@ import javax.persistence.ManyToOne;
 public class Solicitud {
     @Id
     private long id;
-    @ManyToOne
-    @JoinColumn(name = "id")
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = "paciente_id")
     private Paciente paciente;
     private int idEquipo;
     private String tipoEquipo;

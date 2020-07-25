@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SolicitudRepository extends CrudRepository<Solicitud, Long> {
-    Iterable<Solicitud> findByEstado(List<String> estado);
+    Iterable<Solicitud> findByEstadoIn(List<String> estado);
 }

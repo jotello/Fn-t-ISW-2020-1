@@ -45,9 +45,18 @@ public class SolicitudController {
      * @return
      */
     @GetMapping("/{id}")
-    public Solicitud getSolicitudbyId(@PathVariable("id") final Long id){
-        return solicitudService.getbyId(id);
-        
+    public ResponseEntity<Solicitud> getSolicitudbyId(@PathVariable("id") final Long id){
+        Optional<Solicitud> opt = solicitudService.getbyId(id);
+        if (opt.isPresent()) {
+            return ResponseEntity
+            .status(HttpStatus.NOT_FOUND)
+            .body(null);
+        }
+        else {
+            return ResponseEntity
+            .status(HttpStatus.OK)
+            .body(opt.get());
+        }
     }
 
     /**
@@ -93,7 +102,7 @@ public class SolicitudController {
         if (!solicitud.isPresent()) {
             return ResponseEntity
             .status(HttpStatus.NOT_FOUND)
-            .body(solicitud.get());
+            .body(null);
         }
         Solicitud oldSolicitud = solicitud.get();
         oldSolicitud.setPaciente(newSolicitud.getPaciente());

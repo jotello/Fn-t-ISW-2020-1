@@ -26,6 +26,7 @@ public class SolicitudService {
     public Optional<Solicitud> getbyId(Long id){
         return solicitudRepository.findById(id);
     }
+
     public Iterable<Solicitud> getSolicitudByEstado(List<String> estado) {
         return solicitudRepository.findByEstado(estado);
     }

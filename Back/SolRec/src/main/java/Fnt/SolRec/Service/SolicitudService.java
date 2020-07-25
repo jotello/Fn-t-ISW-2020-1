@@ -23,6 +23,14 @@ public class SolicitudService {
         return solicitudRepository.findAll();
     }
 
+    public Iterable<Solicitud> listAllSol() {
+        return solicitudRepository.findByEstado("Solicitado");
+    }
+
+    public Iterable<Solicitud> listAllRes() {
+        return solicitudRepository.findByEstado("Reservado");
+    }
+
     public Optional<Solicitud> getbyId(Long id){
         return solicitudRepository.findById(id);
     }

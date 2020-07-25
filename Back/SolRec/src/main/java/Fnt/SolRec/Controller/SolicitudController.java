@@ -20,7 +20,7 @@ import Fnt.SolRec.Model.Solicitud;
 import Fnt.SolRec.Service.SolicitudService;
 
 @RestController
-@RequestMapping("solicitud/")
+@RequestMapping("")
 public class SolicitudController {
     @Autowired 
     private SolicitudService solicitudService;
@@ -30,7 +30,7 @@ public class SolicitudController {
      * 
      * @return list<Solicitudes>
      */
-    @GetMapping("")  
+    @GetMapping("solicitud/")  
     public Iterable<Solicitud> getSolicitudes(){
         return solicitudService.listAll();
 
@@ -43,7 +43,7 @@ public class SolicitudController {
      * 
      * @return
      */
-    @GetMapping("/{id}")
+    @GetMapping("solicitud/{id}")
     public ResponseEntity<Solicitud> getSolicitudbyId(@PathVariable("id") final Long id){
         Optional<Solicitud> opt = solicitudService.getbyId(id);
         if (opt.isPresent()) {
@@ -66,7 +66,7 @@ public class SolicitudController {
      * 
      * @return List<Solicitud>
      */
-    @GetMapping("/pendientes")
+    @GetMapping("solicitud/pendientes")
     public List<Solicitud> getPendientes() {
         final List<String> list = Arrays.asList("Solicitado");
         return (List<Solicitud>) solicitudService.getSolicitudByEstado(list);
@@ -93,7 +93,7 @@ public class SolicitudController {
      * 
      * @return Solicitud y HttpStatus
      */
-    @PutMapping("/{id}")
+    @PutMapping("solicitud/{id}")
     public ResponseEntity<Solicitud> updateSolicitud(
     @RequestBody Solicitud newSolicitud, 
     @PathVariable("id") Long id){

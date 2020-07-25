@@ -28,7 +28,7 @@ public class SolicitudService {
     }
 
     public Iterable<Solicitud> getSolicitudByEstado(List<String> estado) {
-        return solicitudRepository.findByEstado(estado);
+        return solicitudRepository.findByEstadoIn(estado);
     }
 }
     

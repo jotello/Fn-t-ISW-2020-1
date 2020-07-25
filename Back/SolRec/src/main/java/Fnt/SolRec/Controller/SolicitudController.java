@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import Fnt.SolRec.Model.Solicitud;
-import Fnt.SolRec.Reposoitory.SolicitudRepository;
 import Fnt.SolRec.Service.SolicitudService;
 
 @RestController

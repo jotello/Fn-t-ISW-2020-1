@@ -5,12 +5,16 @@ import java.util.ArrayList;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Solicitud {
     @Id
     private long id;
-    private int paciente;
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private Paciente paciente;
     private int idEquipo;
     private String tipoEquipo;
     private ArrayList<Integer> idEquipamento;
@@ -67,14 +71,14 @@ public class Solicitud {
     /**
      * @return int return the paciente
      */
-    public int getPaciente() {
+    public Paciente getPaciente() {
         return paciente;
     }
 
     /**
      * @param paciente the paciente to set
      */
-    public void setPaciente(int paciente) {
+    public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
     }
 

@@ -115,7 +115,6 @@ public class SolicitudController {
         oldSolicitud.setTipoSalaRecuperacion(newSolicitud.getTipoSalaRecuperacion());
         oldSolicitud.setPabellon(newSolicitud.getPabellon());
         oldSolicitud.setBloques(newSolicitud.getBloques());
-        oldSolicitud.setEstado(newSolicitud.getEstado());
         oldSolicitud.setDescripcion(newSolicitud.getDescripcion());
         oldSolicitud.setDtEmision(newSolicitud.getDtEmision());
         return ResponseEntity

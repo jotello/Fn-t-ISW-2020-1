@@ -122,17 +122,4 @@ public class SolicitudController {
         .status(HttpStatus.OK)
         .body(solicitudService.saveOrUpdateSolicitud(oldSolicitud)); 
     }
-    /**
-     * 
-     * @param solicitud
-     * 
-     * Cambia los parametros de una solicitud
-     * 
-     * @return Solicitud y HttpStatus
-     */
-    @PostMapping("")
-    public ResponseEntity<Solicitud> addSolicitud(Solicitud solicitud){
-        Solicitud creada = solicitudService.saveOrUpdateSolicitud(solicitud);
-        return ResponseEntity.status(HttpStatus.CREATED).body(creada);
-    }
 }

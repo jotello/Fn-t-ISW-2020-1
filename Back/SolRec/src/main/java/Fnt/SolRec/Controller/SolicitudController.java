@@ -32,7 +32,7 @@ public class SolicitudController {
      */
     @GetMapping("solicitud/")  
     public Iterable<Solicitud> getSolicitudes(){
-        return solicitudService.listAll();
+        return solicitudService.listAllSol();
 
     }
     /**
@@ -79,9 +79,9 @@ public class SolicitudController {
      * 
      * @return Solicitud y HttpStatus
      */
-    @PostMapping("")
-    public ResponseEntity<Solicitud> addSolicitud(@RequestBody final Solicitud solicitud){
-        final Solicitud sol= solicitudService.saveOrUpdateSolicitud(solicitud);
+    @PostMapping("solicitud/")
+    public ResponseEntity<Solicitud> addSolicitud(Solicitud solicitud){
+        Solicitud sol= solicitudService.saveOrUpdateSolicitud(solicitud);
         return new ResponseEntity<Solicitud>(sol, HttpStatus.CREATED);
     }
     /**
@@ -121,4 +121,15 @@ public class SolicitudController {
         .status(HttpStatus.OK)
         .body(solicitudService.saveOrUpdateSolicitud(oldSolicitud)); 
     }
+
+    /**
+     * Obtiene lista de Reservas
+     * 
+     * @return list<Reservas>
+     */
+    @GetMapping("reserva/")  
+    public Iterable<Solicitud> getReservas(){
+        return solicitudService.listAllRes();
+    }
+
 }

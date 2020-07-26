@@ -234,3 +234,18 @@ public class SolicitudController {
     }
 
 }
+
+
+/*Codigo sugerido (sospecha O(n**3))
+ * bloque_s = lista de bloque de la solicitud la solicitud 
+ * 
+ * reservas = arreglo de reservas.
+ * for reserva in reservas:
+ *    if bloque_s.retainAll(reserva.getBloques()):  ## retainAll retorna lo que concuerda con la otra lista
+ *        return error:
+ *    else 
+ *      Crear o modificar Reserva                                           ##Buscar documentacion
+ * 
+ * 
+ * */
+ 

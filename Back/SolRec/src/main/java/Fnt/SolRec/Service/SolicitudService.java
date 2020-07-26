@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+
 import Fnt.SolRec.Model.Solicitud;
 import Fnt.SolRec.Reposoitory.SolicitudRepository;
 
@@ -30,5 +31,9 @@ public class SolicitudService {
     public Iterable<Solicitud> getSolicitudByEstado(List<String> estado) {
         return solicitudRepository.findByEstadoIn(estado);
     }
+	public void delete(Long id) {
+		solicitudRepository.deleteById(id);
+		
+	}
 }
     

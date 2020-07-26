@@ -1,6 +1,6 @@
 package Fnt.SolRec.Controller;
 
-import java.util.Arrays;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -156,6 +156,27 @@ public class SolicitudController {
         }
     }
 
-
+    /**
+     * 
+     * @param id
+     * 
+     * Obtiene la reserva cuya id sea id
+     * 
+     * @return Solicitud
+     */
+    @GetMapping("reserva/{id}")
+    public ResponseEntity<Solicitud> getReservabyId(@PathVariable("id") Long id){
+        Optional<Solicitud> opt = solicitudService.getbyId(id);
+        if (opt.isPresent()) {
+            return ResponseEntity
+            .status(HttpStatus.NOT_FOUND)
+            .body(null);
+        }
+        else {
+            return ResponseEntity
+            .status(HttpStatus.OK)
+            .body(opt.get());
+        }
+    }
 
 }

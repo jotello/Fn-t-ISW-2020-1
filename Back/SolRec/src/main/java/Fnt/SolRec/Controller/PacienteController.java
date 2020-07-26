@@ -59,7 +59,7 @@ public class PacienteController {
 	 * */
 	 @PutMapping("/{id}")
      public ResponseEntity<Paciente> updatePaciente(
-     @RequestBody Solicitud newPaciente,
+     @RequestBody Paciente newPaciente,
      @PathVariable("id") Long id){
          Optional<Paciente> paciente = pacienteService.getbyId(id);
          if (!paciente.isPresent()) {

@@ -21,8 +21,8 @@ public class Solicitud {
     private Paciente paciente;
     private int idEquipo;
     private String tipoEquipo;
-    private ArrayList<Integer> idEquipamento;
-    private String tipoEquipamento;
+    private ArrayList<Integer> idEquipamiento;
+    private String tipoEquipamiento;
     private int sillon;
     private String tipoSillon;
     private int salaRecuperacion;
@@ -117,29 +117,29 @@ public class Solicitud {
     /**
      * @return int return the idEquipamento
      */
-    public ArrayList<Integer> getIdEquipamento() {
-        return idEquipamento;
+    public ArrayList<Integer> getIdEquipamiento() {
+        return idEquipamiento;
     }
 
     /**
      * @param idEquipamento the idEquipamento to set
      */
-    public void setIdEquipamento(ArrayList<Integer> idEquipamento) {
-        this.idEquipamento = idEquipamento;
+    public void setIdEquipamiento(ArrayList<Integer> idEquipamento) {
+        this.idEquipamiento = idEquipamento;
     }
 
     /**
      * @return int return the tipoEquipamento
      */
     public String getTipoEquipamento() {
-        return tipoEquipamento;
+        return tipoEquipamiento;
     }
 
     /**
      * @param tipoEquipamento the tipoEquipamento to set
      */
     public void setTipoEquipamento(String tipoEquipamento) {
-        this.tipoEquipamento = tipoEquipamento;
+        this.tipoEquipamiento = tipoEquipamento;
     }
 
     /**

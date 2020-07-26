@@ -1,6 +1,7 @@
 package Fnt.SolRec.Controller;
 
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,8 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import Fnt.SolRec.Model.Horario;
 import Fnt.SolRec.Model.Solicitud;
+import Fnt.SolRec.Service.HorarioService;
 import Fnt.SolRec.Service.SolicitudService;
 
 @RestController
@@ -26,6 +28,8 @@ import Fnt.SolRec.Service.SolicitudService;
 public class SolicitudController {
     @Autowired 
     private SolicitudService solicitudService;
+    @Autowired
+    private HorarioService horarioService;
 
     /**
      * Obtiene lista de Solicitudes
@@ -81,6 +85,7 @@ public class SolicitudController {
      */
     @PostMapping("solicitud/")
     public ResponseEntity<Solicitud> addSolicitud(Solicitud solicitud){
+        solicitud.setDtEmision(LocalDateTime.now());
         Solicitud sol= solicitudService.saveOrUpdateSolicitud(solicitud);
         return new ResponseEntity<Solicitud>(sol, HttpStatus.CREATED);
     }
@@ -106,7 +111,7 @@ public class SolicitudController {
         Solicitud oldSolicitud = solicitud.get();
         oldSolicitud.setIdEquipo(newSolicitud.getIdEquipo());
         oldSolicitud.setTipoEquipo(newSolicitud.getTipoEquipo());
-        oldSolicitud.setIdEquipamento(newSolicitud.getIdEquipamento());
+        oldSolicitud.setIdEquipamiento(newSolicitud.getIdEquipamiento());
         oldSolicitud.setTipoEquipamento(newSolicitud.getTipoEquipamento());
         oldSolicitud.setSillon(newSolicitud.getSillon());
         oldSolicitud.setTipoSillon(newSolicitud.getTipoSillon());
@@ -115,7 +120,6 @@ public class SolicitudController {
         oldSolicitud.setPabellon(newSolicitud.getPabellon());
         oldSolicitud.setBloques(newSolicitud.getBloques());
         oldSolicitud.setDescripcion(newSolicitud.getDescripcion());
-        oldSolicitud.setDtEmision(newSolicitud.getDtEmision());
         return ResponseEntity
         .status(HttpStatus.OK)
         .body(solicitudService.saveOrUpdateSolicitud(oldSolicitud)); 
@@ -197,9 +201,19 @@ public class SolicitudController {
             return ResponseEntity
             .status(HttpStatus.NOT_FOUND)
             .body(null);
-        } /* Falta verificar choque de bloques */
+        }
         Solicitud oldReserva = solicitud.get();
+        ResponseEntity<List<Horario>> res = horarioService.revisarChoque(oldReserva);
+        if (res.getStatusCode() == HttpStatus.CONFLICT){
+            return ResponseEntity
+            .status(HttpStatus.CONFLICT)
+            .header("choques", res.getHeaders().get("choques").toString())
+            .body(oldReserva);
+        }
+        List<Horario> horarios= res.getBody();
+        horarioService.agregarRes(oldReserva, horarios);
         oldReserva.setEstado("Reservado");
+        oldReserva.setDtEmision(LocalDateTime.now());
         return ResponseEntity
         .status(HttpStatus.OK)
         .body(solicitudService.saveOrUpdateSolicitud(oldReserva)); 
@@ -214,11 +228,20 @@ public class SolicitudController {
             return ResponseEntity
             .status(HttpStatus.NOT_FOUND)
             .body(null);
-        } /* Falta verificar Choque de bloques  */
+        }
+        ResponseEntity<List<Horario>> res = horarioService.revisarChoque(newSolicitud);
+        if (res.getStatusCode() == HttpStatus.CONFLICT){
+            return ResponseEntity
+            .status(HttpStatus.CONFLICT)
+            .header("choques", res.getHeaders().get("choques").toString())
+            .body(newSolicitud);
+        }
+        List<Horario> horarios= res.getBody();
+        horarioService.agregarRes(newSolicitud, horarios);
         Solicitud oldReserva = solicitud.get();
         oldReserva.setIdEquipo(newSolicitud.getIdEquipo());
         oldReserva.setTipoEquipo(newSolicitud.getTipoEquipo());
-        oldReserva.setIdEquipamento(newSolicitud.getIdEquipamento());
+        oldReserva.setIdEquipamiento(newSolicitud.getIdEquipamiento());
         oldReserva.setTipoEquipamento(newSolicitud.getTipoEquipamento());
         oldReserva.setSillon(newSolicitud.getSillon());
         oldReserva.setTipoSillon(newSolicitud.getTipoSillon());
@@ -227,7 +250,6 @@ public class SolicitudController {
         oldReserva.setPabellon(newSolicitud.getPabellon());
         oldReserva.setBloques(newSolicitud.getBloques());
         oldReserva.setDescripcion(newSolicitud.getDescripcion());
-        oldReserva.setDtEmision(newSolicitud.getDtEmision());
         return ResponseEntity
         .status(HttpStatus.OK)
         .body(solicitudService.saveOrUpdateSolicitud(oldReserva));
@@ -235,17 +257,3 @@ public class SolicitudController {
 
 }
 
-
-/*Codigo sugerido (sospecha O(n**3))
- * bloque_s = lista de bloque de la solicitud la solicitud 
- * 
- * reservas = arreglo de reservas.
- * for reserva in reservas:
- *    if bloque_s.retainAll(reserva.getBloques()):  ## retainAll retorna lo que concuerda con la otra lista
- *        return error:
- *    else 
- *      Crear o modificar Reserva                                           ##Buscar documentacion
- * 
- * 
- * */
- 

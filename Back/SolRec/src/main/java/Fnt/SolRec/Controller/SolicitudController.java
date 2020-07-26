@@ -121,6 +121,13 @@ public class SolicitudController {
         .status(HttpStatus.OK)
         .body(solicitudService.saveOrUpdateSolicitud(oldSolicitud)); 
     }
+    
+    @DeleteMapping("solicitud/{id}")
+    public @ResponseBody ResponseEntity<String> deleteSolicitud(@PathVariable Long id ) {
+    	solicitudService.delete(id);
+    	return new ResponseEntity<String>("Reserva Eliminada", HttpStatus.OK);
+    	
+    }
 
     
     @DeleteMapping("reserva/{id}")
@@ -141,20 +148,7 @@ public class SolicitudController {
         return solicitudService.listAllRes();
     }
     
-    @GetMapping("reserva/{id}")
-    public ResponseEntity<Solicitud> getReservabyId(@PathVariable("id") final Long id){
-        Optional<Solicitud> opt = solicitudService.getbyId(id);
-        if (opt.isPresent()) {
-            return ResponseEntity
-            .status(HttpStatus.NOT_FOUND)
-            .body(null);
-        }
-        else {
-            return ResponseEntity
-            .status(HttpStatus.OK)
-            .body(opt.get());
-        }
-    }
+    
 
     /**
      * 

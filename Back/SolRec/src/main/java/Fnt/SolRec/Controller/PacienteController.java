@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import Fnt.SolRec.Model.Paciente;
@@ -60,7 +61,7 @@ public class PacienteController {
 	 * */
 	@DeleteMapping("/{id}")
 	public @ResponseBody ResponseEntity<String>  deletePaciente(@PathVariable("id") long id){
-		PacienteService.delete(id);
+		pacienteService.delete(id);
 		return new ResponseEntity<String>("Paciente eliminado", HttpStatus.OK);
 	}
 }

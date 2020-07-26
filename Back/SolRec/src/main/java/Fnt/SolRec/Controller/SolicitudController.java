@@ -104,7 +104,6 @@ public class SolicitudController {
             .body(null);
         }
         Solicitud oldSolicitud = solicitud.get();
-        oldSolicitud.setPaciente(newSolicitud.getPaciente());
         oldSolicitud.setIdEquipo(newSolicitud.getIdEquipo());
         oldSolicitud.setTipoEquipo(newSolicitud.getTipoEquipo());
         oldSolicitud.setIdEquipamento(newSolicitud.getIdEquipamento());
@@ -171,6 +170,67 @@ public class SolicitudController {
             .status(HttpStatus.OK)
             .body(opt.get());
         }
+    }
+    
+    @PutMapping("reserva/{id}/finalizar")
+    public ResponseEntity<Solicitud> finalizarReserva(
+    @RequestBody Solicitud newSolicitud, 
+    @PathVariable("id") Long id){
+        Optional<Solicitud> solicitud = solicitudService.getbyId(id);
+        if (!solicitud.isPresent()) {
+            return ResponseEntity
+            .status(HttpStatus.NOT_FOUND)
+            .body(null);
+        }
+        Solicitud oldReserva = solicitud.get();
+        oldReserva.setEstado("Finalizado");
+        return ResponseEntity
+        .status(HttpStatus.OK)
+        .body(solicitudService.saveOrUpdateSolicitud(oldReserva)); 
+    }
+    @PutMapping("solicitud/{id}/reservar")
+    public ResponseEntity<Solicitud> reservar(
+    @RequestBody Solicitud newSolicitud, 
+    @PathVariable("id") Long id){
+        Optional<Solicitud> solicitud = solicitudService.getbyId(id);
+        if (!solicitud.isPresent()) {
+            return ResponseEntity
+            .status(HttpStatus.NOT_FOUND)
+            .body(null);
+        } /* Falta verificar choque de bloques */
+        Solicitud oldReserva = solicitud.get();
+        oldReserva.setEstado("Reservado");
+        return ResponseEntity
+        .status(HttpStatus.OK)
+        .body(solicitudService.saveOrUpdateSolicitud(oldReserva)); 
+    }
+    
+    @PutMapping("reserva/{id}")
+    public ResponseEntity<Solicitud> updateReserva(
+    @RequestBody Solicitud newSolicitud, 
+    @PathVariable("id") Long id){
+        Optional<Solicitud> solicitud = solicitudService.getbyId(id);
+        if (!solicitud.isPresent()) {
+            return ResponseEntity
+            .status(HttpStatus.NOT_FOUND)
+            .body(null);
+        } /* Falta verificar Choque de bloques  */
+        Solicitud oldReserva = solicitud.get();
+        oldReserva.setIdEquipo(newSolicitud.getIdEquipo());
+        oldReserva.setTipoEquipo(newSolicitud.getTipoEquipo());
+        oldReserva.setIdEquipamento(newSolicitud.getIdEquipamento());
+        oldReserva.setTipoEquipamento(newSolicitud.getTipoEquipamento());
+        oldReserva.setSillon(newSolicitud.getSillon());
+        oldReserva.setTipoSillon(newSolicitud.getTipoSillon());
+        oldReserva.setSalaRecuperacion(newSolicitud.getSalaRecuperacion());
+        oldReserva.setTipoSalaRecuperacion(newSolicitud.getTipoSalaRecuperacion());
+        oldReserva.setPabellon(newSolicitud.getPabellon());
+        oldReserva.setBloques(newSolicitud.getBloques());
+        oldReserva.setDescripcion(newSolicitud.getDescripcion());
+        oldReserva.setDtEmision(newSolicitud.getDtEmision());
+        return ResponseEntity
+        .status(HttpStatus.OK)
+        .body(solicitudService.saveOrUpdateSolicitud(oldReserva));
     }
 
 }

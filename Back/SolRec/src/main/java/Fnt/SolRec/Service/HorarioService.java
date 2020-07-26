@@ -13,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import Fnt.SolRec.Model.Horario;
 import Fnt.SolRec.Model.Solicitud;
 import Fnt.SolRec.Reposoitory.HorarioRepository;
-import javassist.compiler.ast.Pair;
 
 @Service
 public class HorarioService {

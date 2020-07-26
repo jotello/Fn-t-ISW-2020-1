@@ -15,12 +15,12 @@ public class Horario {
     private Long id;
     private String horario;
     private int reservas = 0;
-    private List<Long> paciente = new ArrayList<Long>();
-    private List<Integer> idEquipo = new ArrayList<Integer>();
-    private List<Integer> idEquipamiento = new ArrayList<Integer>();
-    private List<Integer> sillon = new ArrayList<Integer>();
-    private List<Integer> salaRecuperacion = new ArrayList<Integer>();
-    private List<Integer> pabellon = new ArrayList<Integer>();
+    private ArrayList<Long> paciente = new ArrayList<Long>();
+    private ArrayList<Integer> idEquipo = new ArrayList<Integer>();
+    private ArrayList<Integer> idEquipamiento = new ArrayList<Integer>();
+    private ArrayList<Integer> sillon = new ArrayList<Integer>();
+    private ArrayList<Integer> salaRecuperacion = new ArrayList<Integer>();
+    private ArrayList<Integer> pabellon = new ArrayList<Integer>();
 
     public String getHorario() {
         return horario;
@@ -30,7 +30,7 @@ public class Horario {
         return pabellon;
     }
 
-    public void setPabellon(List<Integer> pabellon) {
+    public void setPabellon(ArrayList<Integer> pabellon) {
         this.pabellon = pabellon;
     }
 
@@ -46,7 +46,7 @@ public class Horario {
         return salaRecuperacion;
     }
 
-    public void setSalaRecuperacion(List<Integer> salaRecuperacion) {
+    public void setSalaRecuperacion(ArrayList<Integer> salaRecuperacion) {
         this.salaRecuperacion = salaRecuperacion;
     }
 
@@ -62,7 +62,7 @@ public class Horario {
         return sillon;
     }
 
-    public void setSillon(List<Integer> sillon) {
+    public void setSillon(ArrayList<Integer> sillon) {
         this.sillon = sillon;
     }
 
@@ -78,7 +78,7 @@ public class Horario {
         return idEquipamiento;
     }
 
-    public void setIdEquipamiento(List<Integer> idEquipamiento) {
+    public void setIdEquipamiento(ArrayList<Integer> idEquipamiento) {
         this.idEquipamiento = idEquipamiento;
     }
 
@@ -94,7 +94,7 @@ public class Horario {
         return idEquipo;
     }
 
-    public void setIdEquipo(List<Integer> idEquipo) {
+    public void setIdEquipo(ArrayList<Integer> idEquipo) {
         this.idEquipo = idEquipo;
     }
 
@@ -110,7 +110,7 @@ public class Horario {
         return paciente;
     }
 
-    public void setPaciente(List<Long> paciente) {
+    public void setPaciente(ArrayList<Long> paciente) {
         this.paciente = paciente;
     }
 

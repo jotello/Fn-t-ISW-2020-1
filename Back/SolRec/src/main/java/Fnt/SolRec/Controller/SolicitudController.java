@@ -32,8 +32,7 @@ public class SolicitudController {
      */
     @GetMapping("solicitud/")  
     public Iterable<Solicitud> getSolicitudes(){
-        return solicitudService.listAllSol();
-
+        return solicitudService.listAll();
     }
     /**
      * 
@@ -68,8 +67,7 @@ public class SolicitudController {
      */
     @GetMapping("solicitud/pendientes")
     public List<Solicitud> getPendientes() {
-        final List<String> list = Arrays.asList("Solicitado");
-        return (List<Solicitud>) solicitudService.getSolicitudByEstado(list);
+        return (List<Solicitud>) solicitudService.listAllSol();
     }
     /**
      * 

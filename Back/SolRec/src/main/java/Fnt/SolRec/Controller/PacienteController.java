@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -56,6 +57,24 @@ public class PacienteController {
 	/*
 	 * Aca va Modificar
 	 * */
+	 @PutMapping("/{id}")
+     public ResponseEntity<Paciente> updatePaciente(
+     @RequestBody Solicitud newPaciente,
+     @PathVariable("id") Long id){
+         Optional<Paciente> paciente = pacienteService.getbyId(id);
+         if (!paciente.isPresent()) {
+             return ResponseEntity
+             .status(HttpStatus.NOT_FOUND)
+             .body(null);
+         }
+         Paciente oldPaciente = paciente.get();
+         oldPaciente.setRut(newPaciente.getRut());
+         oldPaciente.setNombre(newPaciente.getNombre());
+         oldPaciente.setNotas(newPaciente.getNotas());
+         return ResponseEntity
+         .status(HttpStatus.OK)
+         .body(pacienteService.saveOrUpdatePaciente(oldPaciente));
+     }
 
 	/*
 	 * Aca va eliminar

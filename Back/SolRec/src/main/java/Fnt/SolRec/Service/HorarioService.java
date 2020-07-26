@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import Fnt.SolRec.Model.Horario;
+import Fnt.SolRec.Model.Paciente;
 import Fnt.SolRec.Model.Solicitud;
 import Fnt.SolRec.Reposoitory.HorarioRepository;
 
@@ -43,9 +44,17 @@ public class HorarioService {
     public ResponseEntity<List<Horario>> revisarChoque(Solicitud sol){
         String choques = "";
         List<Horario> bloques = horarioRepository.findByHorarioIn(sol.getBloques());
+        if(bloques==null){
+            bloques = new ArrayList<Horario>();
+        }
         for (Horario bloque : bloques){
             String hora = bloque.getHorario();
-            if(bloque.getPaciente().contains(sol.getPaciente().getId())){
+            Paciente pac = sol.getPaciente();
+            Long n = null;
+            if (pac != null){
+                n = pac.getId();
+            }
+            if(bloque.getPaciente().contains(n)){
                 choques+="Paciente ya reservado  en bloque "+ hora +"\n";
             }
             if(bloque.getIdEquipo().contains(sol.getIdEquipo())){
@@ -66,6 +75,7 @@ public class HorarioService {
                 choques+="Pabellon ya reservado  en bloque "+ hora +"\n";
             }
         }
+        
         if(choques == ""){
             List<String> nuevos = sol.getBloques();
             if(bloques.size() != nuevos.size()){
@@ -95,11 +105,16 @@ public class HorarioService {
     public List<Horario> agregarRes(Solicitud sol, List<Horario> horarios){
         for (Horario horario : horarios){
             horario.masUno();
+            if (sol.getPaciente() != null)
             horario.addPaciente(sol.getPaciente().getId());
+            if (sol.getIdEquipo() != 0)
             horario.addIdEquipo(sol.getIdEquipo());
             horario.addIdEquipamiento(sol.getIdEquipamiento());
+            if (sol.getSillon() != 0)
             horario.addSillon(sol.getSillon());
+            if (sol.getSalaRecuperacion() != 0)
             horario.addSalaRecuperacion(sol.getSalaRecuperacion());
+            if (sol.getPabellon() != 0)
             horario.addPabellon(sol.getPabellon());
             this.saveOrUpdateHorario(horario);
         }

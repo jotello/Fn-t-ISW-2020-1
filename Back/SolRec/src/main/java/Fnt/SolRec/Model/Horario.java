@@ -35,11 +35,15 @@ public class Horario {
     }
 
     public void addPabellon(Integer pabellon) {
-        this.pabellon.add(pabellon);
+        if(pabellon != null){
+            this.pabellon.add(pabellon);
+        }
     }
 
     public void remPabellon(Integer pabellon) {
-        this.pabellon.remove((Integer) pabellon);
+        if(pabellon != null){
+            this.pabellon.remove((Integer) pabellon);
+        }
     }
 
     public List<Integer> getSalaRecuperacion() {
@@ -51,11 +55,15 @@ public class Horario {
     }
 
     public void addSalaRecuperacion(Integer salaRecuperacion) {
-        this.salaRecuperacion.add(salaRecuperacion);
+        if(salaRecuperacion != null){
+            this.salaRecuperacion.add(salaRecuperacion);
+        }
     }
 
     public void remSalaRecuperacion(Integer salaRecuperacion) {
-        this.salaRecuperacion.remove((Integer) salaRecuperacion);
+        if(salaRecuperacion != null){
+            this.salaRecuperacion.remove((Integer) salaRecuperacion);
+        }
     }
 
     public List<Integer> getSillon() {
@@ -67,11 +75,15 @@ public class Horario {
     }
 
     public void addSillon(Integer sillon) {
-        this.sillon.add(sillon);
+        if(sillon != null){
+            this.sillon.add(sillon);
+        }
     }
 
     public void remSillon(Integer sillon) {
-        this.sillon.remove((Integer) sillon);
+        if(sillon != null){
+            this.sillon.remove((Integer) sillon);
+        }
     }    
 
     public List<Integer> getIdEquipamiento() {
@@ -83,11 +95,15 @@ public class Horario {
     }
 
     public void addIdEquipamiento(List<Integer> idEquipamiento) {
-        this.idEquipamiento.addAll(idEquipamiento);
+        if(idEquipamiento != null){
+            this.idEquipamiento.addAll(idEquipamiento);
+        }
     }
 
     public void remIdEquipamiento(List<Integer> idEquipamiento) {
-        this.idEquipamiento.removeAll(idEquipamiento);
+        if(idEquipamiento != null){
+            this.idEquipamiento.removeAll(idEquipamiento);
+        }
     } 
 
     public List<Integer> getIdEquipo() {
@@ -99,11 +115,15 @@ public class Horario {
     }
 
     public void addIdEquipo(Integer idEquipo) {
-        this.idEquipo.add(idEquipo);
+        if(idEquipo != null){
+            this.idEquipo.add(idEquipo);
+        }
     }
 
     public void remIdEquipo(Integer idEquipo) {
-        this.idEquipo.remove((Integer) idEquipo);
+        if(idEquipo != null){
+            this.idEquipo.remove((Integer) idEquipo);
+        }
     }
 
     public List<Long> getPaciente() {
@@ -115,11 +135,15 @@ public class Horario {
     }
 
     public void addPaciente(Long paciente) {
-        this.paciente.add(paciente);
+        if(paciente != null){
+            this.paciente.add(paciente);
+        }
     }
 
     public void remPaciente(Long paciente) {
-        this.paciente.remove((Long) paciente);
+        if(paciente != null){
+            this.paciente.remove((Long) paciente);
+        }
     }
 
     public int getReservas() {

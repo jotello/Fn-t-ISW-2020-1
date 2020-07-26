@@ -36,7 +36,7 @@ public class SolicitudController {
      * 
      * @return list<Solicitudes>
      */
-    @GetMapping("solicitud/")  
+    @GetMapping("solicitud")  
     public Iterable<Solicitud> getSolicitudes(){
         return solicitudService.listAll();
     }
@@ -83,7 +83,7 @@ public class SolicitudController {
      * 
      * @return Solicitud y HttpStatus
      */
-    @PostMapping("solicitud/")
+    @PostMapping("solicitud")
     public ResponseEntity<Solicitud> addSolicitud(Solicitud solicitud){
         solicitud.setDtEmision(LocalDateTime.now());
         Solicitud sol= solicitudService.saveOrUpdateSolicitud(solicitud);
@@ -146,7 +146,7 @@ public class SolicitudController {
      * 
      * @return list<Reservas>
      */
-    @GetMapping("reserva/")  
+    @GetMapping("reserva")  
     public Iterable<Solicitud> getReservas(){
         return solicitudService.listAllRes();
     }
@@ -178,7 +178,6 @@ public class SolicitudController {
     
     @PutMapping("reserva/{id}/finalizar")
     public ResponseEntity<Solicitud> finalizarReserva(
-    @RequestBody Solicitud newSolicitud, 
     @PathVariable("id") Long id){
         Optional<Solicitud> solicitud = solicitudService.getbyId(id);
         if (!solicitud.isPresent()) {
@@ -192,9 +191,9 @@ public class SolicitudController {
         .status(HttpStatus.OK)
         .body(solicitudService.saveOrUpdateSolicitud(oldReserva)); 
     }
+
     @PutMapping("solicitud/{id}/reservar")
     public ResponseEntity<Solicitud> reservar(
-    @RequestBody Solicitud newSolicitud, 
     @PathVariable("id") Long id){
         Optional<Solicitud> solicitud = solicitudService.getbyId(id);
         if (!solicitud.isPresent()) {

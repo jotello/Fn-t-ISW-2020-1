@@ -66,7 +66,7 @@ public class HorarioService {
                 choques+="Pabellon ya reservado  en bloque "+ hora +"\n";
             }
         }
-        if(choques.isBlank()){
+        if(choques == ""){
             List<String> nuevos = sol.getBloques();
             if(bloques.size() != nuevos.size()){
                 List<String> hechos = new ArrayList<>();

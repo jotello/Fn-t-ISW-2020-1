@@ -38,7 +38,7 @@ public class PacienteController {
 	 * @return Paciente HttpStatus.Created
 	 * */
 	@PostMapping("")
-	public ResponseEntity<Paciente> addPaciente(Paciente paciente){
+	public ResponseEntity<Paciente> addPaciente(@RequestBody Paciente paciente){
 		Paciente pas = pacienteService.saveOrUpdatePaciente(paciente);
 		return new ResponseEntity<Paciente>(pas, HttpStatus.CREATED);
 

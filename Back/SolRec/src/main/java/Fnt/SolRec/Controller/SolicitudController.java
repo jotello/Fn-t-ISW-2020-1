@@ -129,7 +129,7 @@ public class SolicitudController {
     @DeleteMapping("solicitud/{id}")
     public @ResponseBody ResponseEntity<String> deleteSolicitud(@PathVariable Long id ) {
     	solicitudService.delete(id);
-    	return new ResponseEntity<String>("Reserva Eliminada", HttpStatus.OK);
+    	return new ResponseEntity<String>("Solicitud Eliminada", HttpStatus.OK);
     	
     }
 

@@ -84,7 +84,7 @@ public class SolicitudController {
      * @return Solicitud y HttpStatus
      */
     @PostMapping("solicitud")
-    public ResponseEntity<Solicitud> addSolicitud(Solicitud solicitud){
+    public ResponseEntity<Solicitud> addSolicitud(@RequestBody Solicitud solicitud){
         solicitud.setDtEmision(LocalDateTime.now());
         Solicitud sol= solicitudService.saveOrUpdateSolicitud(solicitud);
         return new ResponseEntity<Solicitud>(sol, HttpStatus.CREATED);

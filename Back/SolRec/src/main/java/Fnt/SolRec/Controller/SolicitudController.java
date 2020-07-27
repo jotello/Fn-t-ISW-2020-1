@@ -165,7 +165,7 @@ public class SolicitudController {
     @GetMapping("reserva/{id}")
     public ResponseEntity<Solicitud> getReservabyId(@PathVariable("id") Long id){
         Optional<Solicitud> opt = solicitudService.getbyId(id);
-        if (opt.isPresent()) {
+        if (!opt.isPresent()) {
             return ResponseEntity
             .status(HttpStatus.NOT_FOUND)
             .body(null);

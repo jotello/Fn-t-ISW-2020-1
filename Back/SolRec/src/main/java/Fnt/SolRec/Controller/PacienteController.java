@@ -19,7 +19,7 @@ import Fnt.SolRec.Model.Paciente;
 import Fnt.SolRec.Service.PacienteService;
 
 @RestController
-@RequestMapping("paciente/")
+@RequestMapping("paciente")
 public class PacienteController {
 
 	@Autowired

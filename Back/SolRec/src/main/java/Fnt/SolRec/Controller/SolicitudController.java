@@ -118,6 +118,7 @@ public class SolicitudController {
         oldSolicitud.setSalaRecuperacion(newSolicitud.getSalaRecuperacion());
         oldSolicitud.setTipoSalaRecuperacion(newSolicitud.getTipoSalaRecuperacion());
         oldSolicitud.setPabellon(newSolicitud.getPabellon());
+        oldSolicitud.setTipoPabellon(newSolicitud.getTipoPabellon());
         oldSolicitud.setBloques(newSolicitud.getBloques());
         oldSolicitud.setDescripcion(newSolicitud.getDescripcion());
         return ResponseEntity
@@ -247,6 +248,7 @@ public class SolicitudController {
         oldReserva.setSalaRecuperacion(newSolicitud.getSalaRecuperacion());
         oldReserva.setTipoSalaRecuperacion(newSolicitud.getTipoSalaRecuperacion());
         oldReserva.setPabellon(newSolicitud.getPabellon());
+        oldReserva.setTipoPabellon(newSolicitud.getTipoPabellon());
         oldReserva.setBloques(newSolicitud.getBloques());
         oldReserva.setDescripcion(newSolicitud.getDescripcion());
         return ResponseEntity

@@ -49,9 +49,9 @@ public class SolicitudController {
      * @return
      */
     @GetMapping("solicitud/{id}")
-    public ResponseEntity<Solicitud> getSolicitudbyId(@PathVariable("id") final Long id){
+    public ResponseEntity<Solicitud> getSolicitudbyId(@PathVariable("id")Long id){
         Optional<Solicitud> opt = solicitudService.getbyId(id);
-        if (opt.isPresent()) {
+        if (!opt.isPresent()) {
             return ResponseEntity
             .status(HttpStatus.NOT_FOUND)
             .body(null);

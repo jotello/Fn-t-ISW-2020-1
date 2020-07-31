@@ -41,7 +41,6 @@ public class SolicitudService {
     }
 	public void delete(Long id) {
 		solicitudRepository.deleteById(id);
-		
 	}
 }
     

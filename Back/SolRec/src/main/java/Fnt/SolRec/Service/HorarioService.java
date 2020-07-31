@@ -124,11 +124,16 @@ public class HorarioService {
     public List<Horario> removerRes(Solicitud sol, List<Horario> horarios){
         for (Horario horario : horarios){
             horario.menosUno();
+            if (sol.getPaciente() != null)
             horario.remPaciente(sol.getPaciente().getId());
+            if (sol.getIdEquipo() != 0)
             horario.remIdEquipo(sol.getIdEquipo());
             horario.remIdEquipamiento(sol.getIdEquipamiento());
+            if (sol.getSillon() != 0)
             horario.remSillon(sol.getSillon());
+            if (sol.getSalaRecuperacion() != 0)
             horario.remSalaRecuperacion(sol.getSalaRecuperacion());
+            if (sol.getPabellon() != 0)
             horario.remPabellon(sol.getPabellon());
             this.saveOrUpdateHorario(horario);
         }

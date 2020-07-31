@@ -125,7 +125,15 @@ public class SolicitudController {
         .status(HttpStatus.OK)
         .body(solicitudService.saveOrUpdateSolicitud(oldSolicitud)); 
     }
-    
+    /**
+     * 
+     *
+     * @param id
+     * 
+     * Elimina una Solicitud
+     * 
+     * @return ResponseEntity<String>
+     */
     @DeleteMapping("solicitud/{id}")
     public @ResponseBody ResponseEntity<String> deleteSolicitud(@PathVariable Long id ) {
     	solicitudService.delete(id);
@@ -133,12 +141,28 @@ public class SolicitudController {
     	
     }
 
-    
+    /**
+     * 
+     *
+     * @param id
+     * 
+     * Elimina una Solicitud
+     * 
+     * @return ResponseEntity<String>
+     */
     @DeleteMapping("reserva/{id}")
     public @ResponseBody ResponseEntity<String> deleteReserva(@PathVariable Long id ) {
+        Optional<Solicitud> opt = solicitudService.getbyId(id);
+        if (!opt.isPresent()) {
+            return ResponseEntity
+            .status(HttpStatus.NOT_FOUND)
+            .body("La reserva no existe");
+        }
+        Solicitud sol = opt.get();
+        List<Horario> horarios = horarioService.getByHorario(sol.getBloques());
+        horarioService.removerRes(sol, horarios);
     	solicitudService.delete(id);
     	return new ResponseEntity<String>("Reserva Eliminada", HttpStatus.OK);
-    	
     }
 
 
@@ -186,11 +210,13 @@ public class SolicitudController {
             .status(HttpStatus.NOT_FOUND)
             .body(null);
         }
-        Solicitud oldReserva = solicitud.get();
-        oldReserva.setEstado("Finalizado");
+        Solicitud sol = solicitud.get();
+        List<Horario> horarios = horarioService.getByHorario(sol.getBloques());
+        horarioService.removerRes(sol, horarios);
+        sol.setEstado("Finalizado");
         return ResponseEntity
         .status(HttpStatus.OK)
-        .body(solicitudService.saveOrUpdateSolicitud(oldReserva)); 
+        .body(solicitudService.saveOrUpdateSolicitud(sol)); 
     }
 
     @PutMapping("solicitud/{id}/reservar")
@@ -229,6 +255,9 @@ public class SolicitudController {
             .status(HttpStatus.NOT_FOUND)
             .body(null);
         }
+        Solicitud oldReserva = solicitud.get();
+        List<Horario> oldHorarios = horarioService.getByHorario(oldReserva.getBloques());
+        horarioService.removerRes(oldReserva, oldHorarios);
         ResponseEntity<List<Horario>> res = horarioService.revisarChoque(newSolicitud);
         if (res.getStatusCode() == HttpStatus.CONFLICT){
             return ResponseEntity
@@ -238,7 +267,6 @@ public class SolicitudController {
         }
         List<Horario> horarios= res.getBody();
         horarioService.agregarRes(newSolicitud, horarios);
-        Solicitud oldReserva = solicitud.get();
         oldReserva.setIdEquipo(newSolicitud.getIdEquipo());
         oldReserva.setTipoEquipo(newSolicitud.getTipoEquipo());
         oldReserva.setIdEquipamiento(newSolicitud.getIdEquipamiento());

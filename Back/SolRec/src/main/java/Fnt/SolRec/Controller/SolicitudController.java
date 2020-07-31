@@ -200,7 +200,14 @@ public class SolicitudController {
             .body(opt.get());
         }
     }
-    
+    /**
+     * 
+     * @param id
+     * 
+     * Cambia el estado de la reserva a Finalizado
+     * 
+     * @return ResponseEntity<Solicitud>
+     */
     @PutMapping("reserva/{id}/finalizar")
     public ResponseEntity<Solicitud> finalizarReserva(
     @PathVariable("id") Long id){
@@ -218,7 +225,14 @@ public class SolicitudController {
         .status(HttpStatus.OK)
         .body(solicitudService.saveOrUpdateSolicitud(sol)); 
     }
-
+    /**
+     * 
+     * @param id
+     * 
+     * Cambia el estado de la solicitud a Reservado
+     * 
+     * @return ResponseEntity<Solicitud>
+     */
     @PutMapping("solicitud/{id}/reservar")
     public ResponseEntity<Solicitud> reservar(
     @PathVariable("id") Long id){
@@ -244,7 +258,14 @@ public class SolicitudController {
         .status(HttpStatus.OK)
         .body(solicitudService.saveOrUpdateSolicitud(oldReserva)); 
     }
-    
+    /**
+     * 
+     * @param id,newsolicitud
+     * 
+     * Cambia el estado de la reserva a Finalizado
+     * 
+     * @return ResponseEntity<Solicitud>
+     */
     @PutMapping("reserva/{id}")
     public ResponseEntity<Solicitud> updateReserva(
     @RequestBody Solicitud newSolicitud, 

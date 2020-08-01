@@ -1,10 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import SolicitudForm from './component/solicitudForm'
+import PacienteForm from './component/PacienteForm'
 
 const element=(
-	
-		<SolicitudForm/>
+	<div>
+		<PacienteForm/>
+	</div>
+		
 	
 )
 

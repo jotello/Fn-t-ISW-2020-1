@@ -46,7 +46,7 @@ public class SolicitudController {
      * 
      * Obtiene la solicitud cuya id sea id
      * 
-     * @return
+     * @return ResponseEntity<Solicitud>
      */
     @GetMapping("solicitud/{id}")
     public ResponseEntity<Solicitud> getSolicitudbyId(@PathVariable("id")Long id){
@@ -146,7 +146,7 @@ public class SolicitudController {
      *
      * @param id
      * 
-     * Elimina una Solicitud
+     * Elimina una Reserva
      * 
      * @return ResponseEntity<String>
      */

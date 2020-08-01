@@ -124,6 +124,10 @@ public class HorarioService {
     public List<Horario> removerRes(Solicitud sol, List<Horario> horarios){
         for (Horario horario : horarios){
             horario.menosUno();
+            if(horario.getReservas()==0){
+                horarioRepository.delete(horario);
+                continue;
+            }
             if (sol.getPaciente() != null)
             horario.remPaciente(sol.getPaciente().getId());
             if (sol.getIdEquipo() != 0)

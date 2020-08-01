@@ -26,7 +26,7 @@ public class Horario {
         return horario;
     }
 
-    public List<Integer> getPabellon() {
+    public ArrayList<Integer> getPabellon() {
         return pabellon;
     }
 
@@ -46,7 +46,7 @@ public class Horario {
         }
     }
 
-    public List<Integer> getSalaRecuperacion() {
+    public ArrayList<Integer> getSalaRecuperacion() {
         return salaRecuperacion;
     }
 
@@ -66,7 +66,7 @@ public class Horario {
         }
     }
 
-    public List<Integer> getSillon() {
+    public ArrayList<Integer> getSillon() {
         return sillon;
     }
 
@@ -86,7 +86,7 @@ public class Horario {
         }
     }    
 
-    public List<Integer> getIdEquipamiento() {
+    public ArrayList<Integer> getIdEquipamiento() {
         return idEquipamiento;
     }
 
@@ -106,7 +106,7 @@ public class Horario {
         }
     } 
 
-    public List<Integer> getIdEquipo() {
+    public ArrayList<Integer> getIdEquipo() {
         return idEquipo;
     }
 
@@ -126,7 +126,7 @@ public class Horario {
         }
     }
 
-    public List<Long> getPaciente() {
+    public ArrayList<Long> getPaciente() {
         return paciente;
     }
 

@@ -153,7 +153,7 @@ public class SolicitudController {
     @DeleteMapping("reserva/{id}")
     public @ResponseBody ResponseEntity<String> deleteReserva(@PathVariable Long id ) {
         Optional<Solicitud> opt = solicitudService.getbyId(id);
-        if (!opt.isPresent()) {
+        if (!opt.isPresent() || opt.get().getEstado()!="Reservado") {
             return ResponseEntity
             .status(HttpStatus.NOT_FOUND)
             .body("La reserva no existe");
@@ -237,7 +237,7 @@ public class SolicitudController {
     public ResponseEntity<Solicitud> reservar(
     @PathVariable("id") Long id){
         Optional<Solicitud> solicitud = solicitudService.getbyId(id);
-        if (!solicitud.isPresent()) {
+        if (!solicitud.isPresent() || solicitud.get().getEstado()!="Solicitado") {
             return ResponseEntity
             .status(HttpStatus.NOT_FOUND)
             .body(null);

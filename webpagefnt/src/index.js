@@ -1,15 +1,12 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import SolicitudForm from './component/solicitudForm'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
 
-const element=(
-	
-		<SolicitudForm/>
-	
-)
+import * as serviceWorker from './serviceWorker';
 
-const container= document.getElementById('root')
+ReactDOM.render(<App />, document.getElementById('root'));
 
-ReactDOM.render(element,container)     // que-Donde 
-
-
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: http://bit.ly/CRA-PWA
+serviceWorker.unregister();

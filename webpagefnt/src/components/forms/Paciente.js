@@ -17,6 +17,7 @@ const Paciente=({
     const[rut,setRut]=useState('');
     const[nombre,setNombre]=useState('');
     const[notas,setNotas]=useState('');
+
     return(
         <Row>
             {/*Editor*/}
@@ -64,6 +65,7 @@ const Paciente=({
         </Row>
     )
 }
+
 Paciente.propTypes={
     onSubmit: PropTypes.func,
 }

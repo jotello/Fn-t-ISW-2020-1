@@ -8,16 +8,20 @@ import PageTitle from "../components/common/PageTitle";
 import Paciente from "../components/forms/Paciente"
 import pacienteService from '../services/paciente.service';
 
+
 class AddNewPaciente extends Component{
     constructor(props){
         super(props);
-        this.handleTeamSubmit = this.handleTeamSubmit.bind(this);
+
+        this.handlePacienteSubmit = this.handlePacienteSubmit.bind(this);
     }
-    handleTeamSubmit(data) {
+    handlePacienteSubmit(data) {
         pacienteService.create(data)
           .then((response) => console.log(response))
           .catch((error) => console.log(error));
+          console.log(data);
       }
+      
     render() {
 
         return (
@@ -28,8 +32,9 @@ class AddNewPaciente extends Component{
             </Row>
     
             <Paciente
-              onSubmit={this.handleTeamSubmit}
+              onSubmit={this.handlePacienteSubmit}
             ></Paciente>
+             
           </Container>
         );
       }

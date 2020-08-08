@@ -1,5 +1,6 @@
 import React from "react";
-import { Container, Row, Col, Card, CardHeader, CardBody } from "shards-react";
+import {Link} from "react-router-dom"
+import { Container, Row, Col, Card, Button, CardHeader, CardBody } from "shards-react";
 
 import PageTitle from "../components/common/PageTitle";
 import PacienteService from '../services/paciente.service';
@@ -31,6 +32,15 @@ class Pacientes extends React.Component {
     </Row>
 
     {/* Default Light Table */}
+    <Row>
+    <Col>
+    <Link to="/agregar-paciente">
+      <Button theme="primary" className="mb-2 mr-1">
+        Agregar paciente
+      </Button>
+    </Link>
+    </Col>
+    </Row>
     
     <Row>
       <Col>

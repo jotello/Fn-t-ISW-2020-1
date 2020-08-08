@@ -2,19 +2,28 @@ import React from "react";
 import { Container, Row, Col, Card, CardHeader, CardBody } from "shards-react";
 
 import PageTitle from "../components/common/PageTitle";
-import PacienteService from '../services/paciente.services';
+import PacienteService from '../services/paciente.service';
 
 
 class Pacientes extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        lPacientes : []
+      };
+    }
     getPacientes() {
-      const listPac = PacienteService.getAll()
-          .then((response) => console.log(response))
+      PacienteService.getAll()
+          .then(response => {
+            this.setState({lPacientes : response.data});
+          })
           .catch((error) => console.log(error));
-      return listPac;
     }
 
     render() {
-        return(
+      this.getPacientes();
+      const p = this.state.lPacientes;
+      return(
     <Container fluid className="main-content-container px-4">
     {/* Page Header */}
     <Row noGutters className="page-header py-4">
@@ -22,11 +31,12 @@ class Pacientes extends React.Component {
     </Row>
 
     {/* Default Light Table */}
+    
     <Row>
       <Col>
         <Card small className="mb-4">
           <CardHeader className="border-bottom">
-            <h6 className="m-0">Active Users</h6>
+            <h6 className="m-0">Pacientes</h6>
           </CardHeader>
           <CardBody className="p-0 pb-3">
             <table className="table mb-0">
@@ -36,55 +46,28 @@ class Pacientes extends React.Component {
                     #
                   </th>
                   <th scope="col" className="border-0">
-                    First Name
+                    Nombre
                   </th>
                   <th scope="col" className="border-0">
-                    Last Name
-                  </th>
-                  <th scope="col" className="border-0">
-                    Country
-                  </th>
-                  <th scope="col" className="border-0">
-                    City
-                  </th>
-                  <th scope="col" className="border-0">
-                    Phone
+                    Rut
                   </th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Ali</td>
-                  <td>Kerry</td>
-                  <td>Russian Federation</td>
-                  <td>Gdańsk</td>
-                  <td>107-0339</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Clark</td>
-                  <td>Angela</td>
-                  <td>Estonia</td>
-                  <td>Borghetto di Vara</td>
-                  <td>1-660-850-1647</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Jerry</td>
-                  <td>Nathan</td>
-                  <td>Cyprus</td>
-                  <td>Braunau am Inn</td>
-                  <td>214-4225</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>Colt</td>
-                  <td>Angela</td>
-                  <td>Liberia</td>
-                  <td>Bad Hersfeld</td>
-                  <td>1-848-473-7416</td>
-                </tr>
+                {
+                  p.length === 0 ?
+                  <tr align="center">
+                    <td colSpan="3">No hay pacientes</td>
+                  </tr> :
+                  p.map((pac) => (
+                    <tr key={pac.id}>
+                      <td>{pac.id}</td>
+                      <td>{pac.nombre}</td>
+                      <td>{pac.rut}</td>
+                    </tr>
+                  ))
+                  
+                }
               </tbody>
             </table>
           </CardBody>

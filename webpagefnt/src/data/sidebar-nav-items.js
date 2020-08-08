@@ -7,7 +7,7 @@ export default function() {
     },
     {
       title: "Add-Pac",
-      to: "/agregar-pacientes",
+      to: "/agregar-paciente",
       htmlBefore: '<i class="material-icons">person</i>',
     },
     {

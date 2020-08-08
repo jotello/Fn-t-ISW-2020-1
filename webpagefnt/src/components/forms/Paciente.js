@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 import PropTypes from "prop-types"; 
+import * as validador from "./validador/rut.js"
+
 import {
   Row,
   Col,
@@ -10,6 +12,8 @@ import {
   FormInput,
   Button,
 } from "shards-react";
+
+
 
 const Paciente=({
     onSubmit
@@ -29,7 +33,8 @@ const Paciente=({
                                 <label>Rut</label>
                                 <FormInput
                                     value={rut}
-                                    onChange={(event) => setRut(event.target.value)}
+                                    onChange={(event) => setRut(validador.checkRut(event.target.value))}
+                                    onInput={(event)=>setRut(validador.checkRut(event.target.value))}
                                     size="lg"
                                     className="mb-3"
                                     placeholder="XXXXXXXX-X" />

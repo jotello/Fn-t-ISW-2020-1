@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,29 +24,30 @@ import Fnt.SolRec.Model.Solicitud;
 import Fnt.SolRec.Service.HorarioService;
 import Fnt.SolRec.Service.SolicitudService;
 
+@CrossOrigin
 @RestController
 @RequestMapping("")
 public class SolicitudController {
-    @Autowired 
+    @Autowired
     private SolicitudService solicitudService;
     @Autowired
     private HorarioService horarioService;
 
     /**
      * Obtiene lista de Solicitudes
-     * 
+     *
      * @return list<Solicitudes>
      */
-    @GetMapping("solicitud")  
+    @GetMapping("solicitud")
     public Iterable<Solicitud> getSolicitudes(){
         return solicitudService.listAll();
     }
     /**
-     * 
+     *
      * @param id
-     * 
+     *
      * Obtiene la solicitud cuya id sea id
-     * 
+     *
      * @return ResponseEntity<Solicitud>
      */
     @GetMapping("solicitud/{id}")
@@ -64,11 +66,11 @@ public class SolicitudController {
     }
 
     /**
-     * 
      *
-     * 
+     *
+     *
      * Obtiene las solicitudes con estado pendiente
-     * 
+     *
      * @return List<Solicitud>
      */
     @GetMapping("solicitud/pendientes")
@@ -76,11 +78,11 @@ public class SolicitudController {
         return (List<Solicitud>) solicitudService.listAllSol();
     }
     /**
-     * 
+     *
      * @param solicitud
-     * 
+     *
      * Añade las solicitudes a la DB
-     * 
+     *
      * @return Solicitud y HttpStatus
      */
     @PostMapping("solicitud")
@@ -90,17 +92,17 @@ public class SolicitudController {
         return new ResponseEntity<Solicitud>(sol, HttpStatus.CREATED);
     }
     /**
-     * 
+     *
      * @param newSolicitud
      * @param id
-     * 
+     *
      * Cambia los parametros de una solicitud
-     * 
+     *
      * @return Solicitud y HttpStatus
      */
     @PutMapping("solicitud/{id}")
     public ResponseEntity<Solicitud> updateSolicitud(
-    @RequestBody Solicitud newSolicitud, 
+    @RequestBody Solicitud newSolicitud,
     @PathVariable("id") Long id){
         Optional<Solicitud> solicitud = solicitudService.getbyId(id);
         if (!solicitud.isPresent()) {
@@ -123,31 +125,31 @@ public class SolicitudController {
         oldSolicitud.setDescripcion(newSolicitud.getDescripcion());
         return ResponseEntity
         .status(HttpStatus.OK)
-        .body(solicitudService.saveOrUpdateSolicitud(oldSolicitud)); 
+        .body(solicitudService.saveOrUpdateSolicitud(oldSolicitud));
     }
     /**
-     * 
+     *
      *
      * @param id
-     * 
+     *
      * Elimina una Solicitud
-     * 
+     *
      * @return ResponseEntity<String>
      */
     @DeleteMapping("solicitud/{id}")
     public @ResponseBody ResponseEntity<String> deleteSolicitud(@PathVariable Long id ) {
     	solicitudService.delete(id);
     	return new ResponseEntity<String>("Solicitud Eliminada", HttpStatus.OK);
-    	
+
     }
 
     /**
-     * 
+     *
      *
      * @param id
-     * 
+     *
      * Elimina una Reserva
-     * 
+     *
      * @return ResponseEntity<String>
      */
     @DeleteMapping("reserva/{id}")
@@ -168,22 +170,22 @@ public class SolicitudController {
 
     /**
      * Obtiene lista de Reservas
-     * 
+     *
      * @return list<Reservas>
      */
-    @GetMapping("reserva")  
+    @GetMapping("reserva")
     public Iterable<Solicitud> getReservas(){
         return solicitudService.listAllRes();
     }
-    
-    
+
+
 
     /**
-     * 
+     *
      * @param id
-     * 
+     *
      * Obtiene la reserva cuya id sea id
-     * 
+     *
      * @return Solicitud
      */
     @GetMapping("reserva/{id}")
@@ -201,11 +203,11 @@ public class SolicitudController {
         }
     }
     /**
-     * 
+     *
      * @param id
-     * 
+     *
      * Cambia el estado de la reserva a Finalizado
-     * 
+     *
      * @return ResponseEntity<Solicitud>
      */
     @PutMapping("reserva/{id}/finalizar")
@@ -223,14 +225,14 @@ public class SolicitudController {
         sol.setEstado("Finalizado");
         return ResponseEntity
         .status(HttpStatus.OK)
-        .body(solicitudService.saveOrUpdateSolicitud(sol)); 
+        .body(solicitudService.saveOrUpdateSolicitud(sol));
     }
     /**
-     * 
+     *
      * @param id
-     * 
+     *
      * Cambia el estado de la solicitud a Reservado
-     * 
+     *
      * @return ResponseEntity<Solicitud>
      */
     @PutMapping("solicitud/{id}/reservar")
@@ -256,19 +258,19 @@ public class SolicitudController {
         oldReserva.setDtEmision(LocalDateTime.now());
         return ResponseEntity
         .status(HttpStatus.OK)
-        .body(solicitudService.saveOrUpdateSolicitud(oldReserva)); 
+        .body(solicitudService.saveOrUpdateSolicitud(oldReserva));
     }
     /**
-     * 
+     *
      * @param id,newsolicitud
-     * 
+     *
      * Cambia el estado de la reserva a Finalizado
-     * 
+     *
      * @return ResponseEntity<Solicitud>
      */
     @PutMapping("reserva/{id}")
     public ResponseEntity<Solicitud> updateReserva(
-    @RequestBody Solicitud newSolicitud, 
+    @RequestBody Solicitud newSolicitud,
     @PathVariable("id") Long id){
         Optional<Solicitud> solicitud = solicitudService.getbyId(id);
         if (!solicitud.isPresent()) {
@@ -306,4 +308,3 @@ public class SolicitudController {
     }
 
 }
-

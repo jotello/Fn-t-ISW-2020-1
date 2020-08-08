@@ -1,6 +1,6 @@
 import { api } from '../helpers';
 
-const basePath = 'v1/paciente';
+const basePath = '';
 
 function getAll() {
     return api.get(`${basePath}/pacientes`);

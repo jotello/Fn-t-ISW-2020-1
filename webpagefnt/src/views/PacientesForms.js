@@ -6,7 +6,7 @@ import {
 
 import PageTitle from "../components/common/PageTitle";
 import Paciente from "../components/forms/Paciente"
-import PacienteService from '../services/paciente.services';
+import pacienteService from '../services/paciente.service';
 
 class AddNewPaciente extends Component{
     constructor(props){
@@ -14,7 +14,7 @@ class AddNewPaciente extends Component{
         this.handleTeamSubmit = this.handleTeamSubmit.bind(this);
     }
     handleTeamSubmit(data) {
-        teamsService.create(data)
+        pacienteService.create(data)
           .then((response) => console.log(response))
           .catch((error) => console.log(error));
       }

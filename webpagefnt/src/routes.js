@@ -15,6 +15,7 @@ import Tables from "./views/Tables";
 import BlogPosts from "./views/BlogPosts";
 import TeamsList from './views/TeamsList';
 import TeamForm from './views/TeamForm';
+import PacientesForms from './views/PacientesForms';
 
 export default [
   {
@@ -27,6 +28,11 @@ export default [
     path: "/pacientes",
     layout: DefaultLayout,
     component: Pacientes
+  },
+  {
+    path: "/agregar-paciente",
+    layout: DefaultLayout,
+    component: PacientesForms
   },
   {
     path: "/blog-overview",

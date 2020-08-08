@@ -7,7 +7,7 @@ import PacienteService from '../services/paciente.services';
 
 class Pacientes extends React.Component {
     getPacientes() {
-      const listPac = PacienteService.listall()
+      const listPac = PacienteService.getAll()
           .then((response) => console.log(response))
           .catch((error) => console.log(error));
       return listPac;

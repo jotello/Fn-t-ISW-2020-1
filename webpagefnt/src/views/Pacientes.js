@@ -6,6 +6,7 @@ import PageTitle from "../components/common/PageTitle";
 
 class Pacientes extends React.Component {
     render() {
+        const l_pac;
         return(
     <Container fluid className="main-content-container px-4">
     {/* Page Header */}

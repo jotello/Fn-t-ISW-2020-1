@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Row, Col, Card, CardHeader, CardBody } from "shards-react";
 
 import PageTitle from "../components/common/PageTitle";
-import PacienteService from '../services/paciente.services';
+import PacienteService from '../services/paciente.service';
 
 
 class Pacientes extends React.Component {

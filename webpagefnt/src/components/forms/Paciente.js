@@ -1,4 +1,4 @@
-import React, {useState} from "reac";
+import React, {useState} from "react";
 import PropTypes from "prop-types"; 
 import {
   Row,
@@ -17,6 +17,7 @@ const Paciente=({
     const[rut,setRut]=useState('');
     const[nombre,setNombre]=useState('');
     const[notas,setNotas]=useState('');
+
     return(
         <Row>
             {/*Editor*/}
@@ -64,6 +65,7 @@ const Paciente=({
         </Row>
     )
 }
+
 Paciente.propTypes={
     onSubmit: PropTypes.func,
 }

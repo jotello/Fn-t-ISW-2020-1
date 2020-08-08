@@ -2,11 +2,18 @@ import React from "react";
 import { Container, Row, Col, Card, CardHeader, CardBody } from "shards-react";
 
 import PageTitle from "../components/common/PageTitle";
+import PacienteService from '../services/paciente.services';
 
 
 class Pacientes extends React.Component {
+    getPacientes() {
+      const listPac = PacienteService.listall()
+          .then((response) => console.log(response))
+          .catch((error) => console.log(error));
+      return listPac;
+    }
+
     render() {
-        const l_pac;
         return(
     <Container fluid className="main-content-container px-4">
     {/* Page Header */}

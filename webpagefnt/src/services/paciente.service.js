@@ -1,9 +1,9 @@
 import { api } from '../helpers';
 
-const basePath = '';
+const basePath = 'pacientes';
 
 function getAll() {
-    return api.get(`${basePath}/pacientes`);
+    return api.get(`${basePath}`);
 }
 
 function show(pacienteId) {
@@ -11,7 +11,7 @@ function show(pacienteId) {
 }
 
 function create(data) {
-    return api.post(`${basePath}/`, data);
+    return api.post(`${basePath}`, data);
 }
 
 const pacienteService = {

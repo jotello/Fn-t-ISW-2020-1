@@ -6,11 +6,6 @@ export default function() {
       htmlBefore: '<i class="material-icons">person</i>',
     },
     {
-      title: "Add-Pac",
-      to: "/agregar-paciente",
-      htmlBefore: '<i class="material-icons">person</i>',
-    },
-    {
       title: "Blog Dashboard",
       to: "/blog-overview",
       htmlBefore: '<i class="material-icons">edit</i>',

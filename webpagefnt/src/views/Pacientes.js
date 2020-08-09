@@ -107,8 +107,9 @@ class Pacientes extends React.Component {
                       <Button id={pac.id} onClick={() => this.openPopupbox(pac)} theme="primary" className="mb-2 mr-1" >
                       
                       Ver
-                      <PopupboxContainer />                      
+                                           
                       </Button>
+                      <PopupboxContainer /> 
                       
                       </td>
                       <td>

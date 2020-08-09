@@ -28,7 +28,7 @@ class AddNewPaciente extends Component{
           <Container fluid className="main-content-container px-4 pb-4">
             {/* Page Header */}
             <Row noGutters className="page-header py-4">
-              <PageTitle sm="4" title="Add New Paciente" subtitle="FnT" className="text-sm-left" />
+              <PageTitle sm="4" title="Agregar paciente" subtitle="Pacientes" className="text-sm-left" />
             </Row>
     
             <Paciente

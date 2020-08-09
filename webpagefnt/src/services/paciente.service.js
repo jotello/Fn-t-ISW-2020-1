@@ -7,6 +7,7 @@ function getAll() {
 }
 
 function show(pacienteId) {
+    console.log(pacienteId);
     return api.get(`${basePath}/${pacienteId}`)
 }
 

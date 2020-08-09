@@ -1,9 +1,15 @@
 import React from "react";
 import {Link} from "react-router-dom"
 import { Container, Row, Col, Card, Button, CardHeader, CardBody } from "shards-react";
-
+import {
+  PopupboxManager,
+  PopupboxContainer
+} from 'react-popupbox';
 import PageTitle from "../components/common/PageTitle";
 import PacienteService from '../services/paciente.service';
+import VerPaciente from './VerPaciente'
+
+
 
 
 class Pacientes extends React.Component {
@@ -13,6 +19,16 @@ class Pacientes extends React.Component {
         lPacientes : []
       };
     }
+    openPopupbox(pac) {
+      console.log('Aca LLegi');
+      const content = (
+        <div>
+          <VerPaciente paciente={pac}></VerPaciente>
+        </div>
+      )
+      PopupboxManager.open({content})
+    }
+    
     handleGetPacientes() {
       PacienteService.getAll()
           .then(response => {
@@ -24,6 +40,15 @@ class Pacientes extends React.Component {
       PacienteService.remove(id)
         .catch((error) => console.log(error));
     }
+    handleGetPaciente(id) {
+      PacienteService.show(id)
+        .then(response => {
+          this.setState({Paciente : response.data});
+        })
+        .catch((error) => console.log(error));
+      
+    }
+   
 
     render() {
       this.handleGetPacientes();
@@ -79,9 +104,12 @@ class Pacientes extends React.Component {
                       <td>{pac.nombre}</td>
                       <td>{pac.rut}</td>
                       <td>
-                      <Button theme="primary" className="mb-2 mr-1" >
+                      <Button id={pac.id} onClick={() => this.openPopupbox(pac)} theme="primary" className="mb-2 mr-1" >
+                      
                       Ver
+                      <PopupboxContainer />                      
                       </Button>
+                      
                       </td>
                       <td>
                       <Button theme="primary" className="mb-2 mr-1">

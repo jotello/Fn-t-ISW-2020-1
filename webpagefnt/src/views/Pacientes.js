@@ -22,6 +22,7 @@ class Pacientes extends React.Component {
     }
     handleDeletePacientes(id) {
       PacienteService.remove(id)
+        .catch((error) => console.log(error));
     }
 
     render() {
@@ -88,7 +89,7 @@ class Pacientes extends React.Component {
                       </Button>
                       </td>
                       <td>
-                      <Button theme="primary" className="mb-2 mr-1">
+                      <Button id={pac.id + "delete"} onClick={() => this.handleDeletePacientes(pac.id)} theme="primary" className="mb-2 mr-1">
                       Eliminar
                       </Button>
                       </td>

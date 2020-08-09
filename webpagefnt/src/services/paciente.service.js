@@ -7,7 +7,7 @@ function getAll() {
 }
 
 function show(pacienteId) {
-    return api.get(`${basePath}/?id=${pacienteId}`)
+    return api.get(`${basePath}/${pacienteId}`)
 }
 
 function create(data) {

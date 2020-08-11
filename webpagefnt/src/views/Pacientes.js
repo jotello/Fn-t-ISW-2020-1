@@ -28,6 +28,9 @@ class Pacientes extends React.Component {
       )
       PopupboxManager.open({content})
     }
+    sortByID(x,y) {
+      return x.id - y.id;
+    }
     
     handleGetPacientes() {
       PacienteService.getAll()
@@ -53,6 +56,7 @@ class Pacientes extends React.Component {
     render() {
       this.handleGetPacientes();
       const p = this.state.lPacientes;
+      p.sort(this.sortByID);
       return(
     <Container fluid className="main-content-container px-4">
     {/* Page Header */}

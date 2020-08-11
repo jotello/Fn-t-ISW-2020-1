@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import PropTypes from "prop-types"; 
+import {Link} from "react-router-dom"
 import * as validador from "./validador/rut.js";
 
 import {
@@ -58,11 +59,13 @@ const Paciente=({
                                     placeholder="Le tiene miedo a las ballenas" />
                             </FormGroup>
                         </Form>
+                        <Link to="/pacientes">
                         <Button 
                             theme="primary"
                             className="mb-2 mr-1"
                             onClick={(event)=>onSubmit({'rut':rut,'nombre':nombre,'notas':notas})}
                             >Agregar</Button>
+                        </Link>
                     </CardBody>
 
                 </Card>

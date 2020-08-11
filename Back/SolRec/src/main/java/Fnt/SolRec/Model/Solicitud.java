@@ -4,21 +4,16 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 @Entity
 public class Solicitud {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @ManyToOne(optional = true, fetch = FetchType.LAZY)
-    @JoinColumn(name = "paciente_id")
-    private Paciente paciente;
+    private long paciente_id;
     private int idEquipo;
     private String tipoEquipo;
     private ArrayList<Integer> idEquipamiento;
@@ -75,15 +70,15 @@ public class Solicitud {
     /**
      * @return int return the paciente
      */
-    public Paciente getPaciente() {
-        return paciente;
+    public long getPaciente() {
+        return paciente_id;
     }
 
     /**
      * @param paciente the paciente to set
      */
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
+    public void setPaciente(long paciente) {
+        this.paciente_id = paciente;
     }
 
     /**

@@ -11,7 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import Fnt.SolRec.Model.Horario;
-import Fnt.SolRec.Model.Paciente;
 import Fnt.SolRec.Model.Solicitud;
 import Fnt.SolRec.Reposoitory.HorarioRepository;
 
@@ -49,12 +48,7 @@ public class HorarioService {
         }
         for (Horario bloque : bloques){
             String hora = bloque.getHorario();
-            Paciente pac = sol.getPaciente();
-            Long n = null;
-            if (pac != null){
-                n = pac.getId();
-            }
-            if(bloque.getPaciente().contains(n)){
+            if(bloque.getPaciente().contains(sol.getPaciente())){
                 choques+="Paciente ya reservado  en bloque "+ hora +"\n";
             }
             if(bloque.getIdEquipo().contains(sol.getIdEquipo())){
@@ -105,8 +99,8 @@ public class HorarioService {
     public List<Horario> agregarRes(Solicitud sol, List<Horario> horarios){
         for (Horario horario : horarios){
             horario.masUno();
-            if (sol.getPaciente() != null)
-            horario.addPaciente(sol.getPaciente().getId());
+            if (sol.getPaciente() != 0)
+            horario.addPaciente(sol.getPaciente());
             if (sol.getIdEquipo() != 0)
             horario.addIdEquipo(sol.getIdEquipo());
             horario.addIdEquipamiento(sol.getIdEquipamiento());
@@ -128,8 +122,8 @@ public class HorarioService {
                 horarioRepository.delete(horario);
                 continue;
             }
-            if (sol.getPaciente() != null)
-            horario.remPaciente(sol.getPaciente().getId());
+            if (sol.getPaciente() != 0)
+            horario.remPaciente(sol.getPaciente());
             if (sol.getIdEquipo() != 0)
             horario.remIdEquipo(sol.getIdEquipo());
             horario.remIdEquipamiento(sol.getIdEquipamiento());

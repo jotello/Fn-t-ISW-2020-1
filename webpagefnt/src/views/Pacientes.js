@@ -78,6 +78,8 @@ class Pacientes extends React.Component {
             <h6 className="m-0">Pacientes</h6>
           </CardHeader>
           <CardBody className="p-0 pb-3">
+
+          <PopupboxContainer />
             <table className="table mb-0">
               <thead className="bg-light">
                 <tr>
@@ -104,11 +106,14 @@ class Pacientes extends React.Component {
                       <td>{pac.nombre}</td>
                       <td>{pac.rut}</td>
                       <td>
-                      <Button id={pac.id + "view"} onClick={() => this.openPopupbox(pac)} theme="primary" className="mb-2 mr-1" >
+                      
+                      <Button id={pac.id} onClick={() => this.openPopupbox(pac)} theme="primary" className="mb-2 mr-1" >
                       
                       Ver
                                            
                       </Button>
+                      
+                      
                       </td>
                       <td>
                       <Button theme="primary" className="mb-2 mr-1">
@@ -126,7 +131,9 @@ class Pacientes extends React.Component {
                 }
               </tbody>
             </table>
+            
           </CardBody>
+          
         </Card>
       </Col>
     </Row>

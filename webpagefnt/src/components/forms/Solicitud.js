@@ -17,7 +17,7 @@ const Solicitud=({
 })=>{
     const[rut,setRut]=useState('');
     const[equipo,setEquipo]=useState('');
-    const[equpamiento,setEquipamiento]=useState('');
+    const[equipamiento,setEquipamiento]=useState('');
     const[sillon,setSillon]=useState('');
     const[salaRec,setSalaRec]=useState('');
     const[pabellon,setPabellon]=useState('');
@@ -39,10 +39,56 @@ const Solicitud=({
                                     onChange={(event)=> setRut(validador.checkRut(event.target.value))}
                                     size="lg"
                                     className="mb-3"
-                                    placeholder="XXXXXXXX-X" />                          
+                                    placeholder="XXXXXXXX-X" />                                                          
 
                             </FormGroup>
-                            
+                            <FormGroup>
+                                <FormInput 
+                                    value={equipo}
+                                    onChange={()=>{}}
+                                
+                                />
+                                <FormSelect>
+                                    <option>Choose ...</option>
+                                    <option>...</option>
+                                </FormSelect>
+
+
+                            </FormGroup>
+                            <FormGroup>
+                                <FormInput 
+                                    value={equipamiento}
+                                    onChange={()=>{}}
+                                
+                                />
+                                <FormSelect>
+                                    <option>Choose ...</option>
+                                    <option>...</option>
+                                </FormSelect>
+                            </FormGroup>
+                            <FormGroup>
+                                <FormInput 
+                                    value={sillon}
+                                    onChange={()=>{}}
+                                
+                                />
+                                <FormSelect>
+                                    <option>Choose ...</option>
+                                    <option>...</option>
+                                </FormSelect>
+                            </FormGroup>
+                            <FormGroup>
+                                <FormInput 
+                                    value={pabellon}
+                                    onChange={()=>{}}
+                                
+                                />
+                                <FormSelect>
+                                    <option>Choose ...</option>
+                                    <option>...</option>
+                                </FormSelect>
+                            </FormGroup>
+
                         </Form>
                     </CardBody>
                 </Card>

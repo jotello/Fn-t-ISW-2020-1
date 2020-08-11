@@ -7,6 +7,7 @@ import {
 } from "shards-react";
 
 const VerPaciente=({paciente})=>(
+  <div>
     <Card small className='mb-4 pt-3'>
         <CardHeader className="border-bottom text-center">
         <h4 className="mb-0">{paciente.rut}</h4>
@@ -15,6 +16,7 @@ const VerPaciente=({paciente})=>(
         <p>{paciente.notas}</p>
         </CardHeader>
     </Card>
+  </div>
 )
 VerPaciente.propTypes = {
     /**

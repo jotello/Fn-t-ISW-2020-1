@@ -23,7 +23,7 @@ class Pacientes extends React.Component {
       console.log('Aca LLegi');
       const content = (
         <div>
-          <VerPaciente paciente={pac}></VerPaciente>
+          <VerPaciente paciente={pac}/>
         </div>
       )
       PopupboxManager.open({content})
@@ -59,7 +59,7 @@ class Pacientes extends React.Component {
     <Row noGutters className="page-header py-4">
       <PageTitle sm="4" title="Lista de pacientes" subtitle="Pacientes" className="text-sm-left" />
     </Row>
-
+    <PopupboxContainer/>
     {/* Default Light Table */}
     <Row>
     <Col>
@@ -104,13 +104,11 @@ class Pacientes extends React.Component {
                       <td>{pac.nombre}</td>
                       <td>{pac.rut}</td>
                       <td>
-                      <Button id={pac.id} onClick={() => this.openPopupbox(pac)} theme="primary" className="mb-2 mr-1" >
+                      <Button id={pac.id + "view"} onClick={() => this.openPopupbox(pac)} theme="primary" className="mb-2 mr-1" >
                       
                       Ver
                                            
                       </Button>
-                      <PopupboxContainer /> 
-                      
                       </td>
                       <td>
                       <Button theme="primary" className="mb-2 mr-1">

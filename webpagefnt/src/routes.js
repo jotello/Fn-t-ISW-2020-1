@@ -16,6 +16,7 @@ import BlogPosts from "./views/BlogPosts";
 import TeamsList from './views/TeamsList';
 import TeamForm from './views/TeamForm';
 import PacientesForms from './views/PacientesForms';
+import Solicitudes from './views/Solicitudes';
 
 export default [
   {
@@ -33,6 +34,11 @@ export default [
     path: "/agregar-paciente",
     layout: DefaultLayout,
     component: PacientesForms
+  },
+  {
+    path: "/solicitudes",
+    layout: DefaultLayout,
+    component: Solicitudes
   },
   {
     path: "/blog-overview",

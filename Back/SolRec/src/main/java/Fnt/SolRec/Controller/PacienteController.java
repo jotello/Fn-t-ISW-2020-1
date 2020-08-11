@@ -59,24 +59,24 @@ public class PacienteController {
 	/*
 	 * Aca va Modificar
 	 * */
-	 @PutMapping("/{id}")
-     public ResponseEntity<Paciente> updatePaciente(
-     @RequestBody Paciente newPaciente,
-     @PathVariable("id") Long id){
-         Optional<Paciente> paciente = pacienteService.getbyId(id);
-         if (!paciente.isPresent()) {
-             return ResponseEntity
-             .status(HttpStatus.NOT_FOUND)
-             .body(null);
-         }
-         Paciente oldPaciente = paciente.get();
-         oldPaciente.setRut(newPaciente.getRut());
-         oldPaciente.setNombre(newPaciente.getNombre());
-         oldPaciente.setNotas(newPaciente.getNotas());
-         return ResponseEntity
-         .status(HttpStatus.OK)
-         .body(pacienteService.saveOrUpdatePaciente(oldPaciente));
-     }
+	@PutMapping("/{id}")
+    public ResponseEntity<Paciente> updatePaciente(
+    @RequestBody Paciente newPaciente,
+    @PathVariable("id") Long id){
+        Optional<Paciente> paciente = pacienteService.getbyId(id);
+        if (!paciente.isPresent()) {
+            return ResponseEntity
+            .status(HttpStatus.NOT_FOUND)
+            .body(null);
+        }
+        Paciente oldPaciente = paciente.get();
+        oldPaciente.setRut(newPaciente.getRut());
+        oldPaciente.setNombre(newPaciente.getNombre());
+        oldPaciente.setNotas(newPaciente.getNotas());
+        return ResponseEntity
+        .status(HttpStatus.OK)
+        .body(pacienteService.saveOrUpdatePaciente(oldPaciente));
+    }
 
 	/*
 	 * Aca va eliminar

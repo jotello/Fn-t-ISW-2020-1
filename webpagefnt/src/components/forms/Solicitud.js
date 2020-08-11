@@ -8,6 +8,7 @@ import{
     Form,
     FormGroup,
     FormInput,
+    FormSelect,
     Button,
 } from "shards-react";
 import * as validador from "./validador/rut.js";
@@ -101,3 +102,10 @@ const Solicitud=({
 
 
 }
+Solicitud.propTypes={
+    onSubmit: PropTypes.func,
+}
+Solicitud.defaultProps={
+    onSubmit:()=>{},
+}
+export default Solicitud;

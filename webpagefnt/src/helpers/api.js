@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const endpoints = {
-    development: 'http://iso-solrec.herokuapp.com',
+    development: 'https://iso-solrec.herokuapp.com',
 };
 
 export const api = axios.create({

@@ -15,13 +15,18 @@ class EditPaciente extends Component{
         
         this.handlePacienteSubmit = this.handlePacienteSubmit.bind(this);
         this.state = {
-            paciente : {id:'',rut:'',nombre:'',notas:''},
+            id:'',
+            nombre:'',
+            rut:'',
+            notas:'',
           };
+          this.handlePacienteGet(this.props.location.state.id);
 
         //console.log('HOla')
     }
     handlePacienteSubmit(data) {
-        console.log(data)
+        
+
         pacienteService.update(data)
           .then((response) => console.log(response))
           .catch((error) => console.log(error));
@@ -30,15 +35,18 @@ class EditPaciente extends Component{
       handlePacienteGet(id) {
         pacienteService.show(id)
           .then(response => {
-            this.setState({paciente : response.data});
+            this.setState({id:response.data.id});
+            this.setState({rut:response.data.rut});
+            this.setState({nombre:response.data.nombre});
+            this.setState({notas:response.data.notas});
           })
           .catch((error) => console.log(error));
       }
       
     render() {
         this.handlePacienteGet(this.props.location.state.id);
-        const p = this.state.paciente;
-        console.log(p);
+        const p ={'id':this.state.id,'nombre':this.state.nombre,'rut':this.state.rut,'notas':this.state.notas};
+        //console.log(p);
         //console.log('ACA llego');
 
         return (

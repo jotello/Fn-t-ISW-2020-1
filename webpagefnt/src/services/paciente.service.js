@@ -14,7 +14,8 @@ function create(data) {
     return api.post(`${basePath}`, data);
 }
 function update(data) {
-    return api.post(`${basePath}/${data.id}`, data);
+    console.log(data);
+    return api.put(`${basePath}/${data.id}`, data);
 }
 function remove(id) {
     return api.delete(`${basePath}/${id}`);

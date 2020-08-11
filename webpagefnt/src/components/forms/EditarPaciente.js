@@ -20,13 +20,29 @@ const EditarPaciente=({
     paciente,
     onSubmit,
  })=>{
-    console.log(paciente);
-    const[id,setId]=useState(paciente.id);
+    //console.log(paciente);
+    
     const[rut,setRut]=useState(paciente.rut);
     const[nombre,setNombre]=useState(paciente.nombre);
     const[notas,setNotas]=useState(paciente.notas);
     
     //setNotas(paciente.notas);
+    function verificar(paciente,nombre,rut,notas){
+        var name=nombre;
+        var run=rut;
+        var notes=notas;
+        if(nombre===''){
+            name=paciente.nombre
+        }
+        if(rut===''){
+            run=paciente.rut
+        }
+        if(notas===''){
+            notes=paciente.notas
+        }
+        return {'id':paciente.id,'nombre':name,'rut':run,'notas':notes}
+
+    }
     return(
         <Row>
             {/*Editor*/}
@@ -37,22 +53,22 @@ const EditarPaciente=({
                         <FormGroup>
                                 <label>Id</label>
                                 <FormInput
-                                    value={id}    
-                                    onChange={(event) => setId(event.target.value)}                                
+                                    value={paciente.id}    
+                                                               
                                     size="lg"
                                     className="mb-3"
-                                    
-                                    placeholder="00" />
+                                    readOnly
+                                    placeholder={paciente.id}  />
                             </FormGroup>
                             <FormGroup>
                                 <label>Rut</label>
                                 <FormInput
-                                    value={paciente.rut}
+                                    value={rut}
                                     onChange={(event) => setRut(validador.checkRut(event.target.value))}
                                     onInput={(event)=>setRut(validador.checkRut(event.target.value))}
                                     size="lg"
                                     className="mb-3"
-                                    placeholder="XXXXXXXX-X" />
+                                    placeholder={paciente.rut} />
                             </FormGroup>
                             <FormGroup>
                                 <label>Nombre</label>
@@ -61,7 +77,7 @@ const EditarPaciente=({
                                     onChange={(event) => setNombre(event.target.value)}
                                     size="lg"
                                     className="mb-3"
-                                    placeholder="Tulio Triviño" />
+                                    placeholder={paciente.nombre} />
                             </FormGroup>
                             <FormGroup>
                                 <label>Notas</label>
@@ -70,14 +86,14 @@ const EditarPaciente=({
                                     onChange={(event) => setNotas(event.target.value)}
                                     size="lg"
                                     className="mb-3"
-                                    placeholder="Le tiene miedo a las ballenas" />
+                                    placeholder={paciente.notas} />
                             </FormGroup>
                         </Form>
                         <Link to="/pacientes">
                         <Button 
                             theme="primary"
                             className="mb-2 mr-1"
-                            onClick={(event)=>onSubmit({id:'id','rut':rut,'nombre':nombre,'notas':notas})}
+                            onClick={(event) => onSubmit(verificar(paciente,nombre,rut,notas))}
                             >Editar</Button>
                         </Link>
                     </CardBody>
@@ -93,11 +109,6 @@ EditarPaciente.propTypes={
 }
 EditarPaciente.defaultProps={
     onSubmit:()=>{},
-    paciente: {
-        id:"-1",
-        rut: "XX.XXX.XXX-X",
-        nombre: "Tulio Triviño",
-        notas: "Le tiene miedo a las Ballenas" 
-      }
+    
 }
 export default EditarPaciente;

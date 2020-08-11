@@ -1,4 +1,5 @@
 import React,{useState} from "react";
+import Select from "react-select";
 import PropTypes from "prop-types";
 import{
     Row,
@@ -11,7 +12,7 @@ import{
     FormSelect,
     Button,
 } from "shards-react";
-import * as validador from "./validador/rut.js";
+import pacienteService from "../../services/paciente.service"
 
 const Solicitud=({
     onSubmit
@@ -26,7 +27,16 @@ const Solicitud=({
     const[horaTermino,setHoraTermino]=useState('');
     const[descripcion,setDescripcion]=useState('');
 
+    const[lPacientes,setLPacientes]=useState('');
+    pacienteService.getAll()
+        .then((response) => {
+            setLPacientes(response.data)
+            console.log(response)
+        })
+        .catch((error) => console.log(error));
+
     return(
+
         <Row>
             {/* Editor */}
             <Col lg="9" md="12">
@@ -34,14 +44,21 @@ const Solicitud=({
                     <CardBody>
                         <Form className="add-new-solicitud">
                             <FormGroup>
-                                <label>Rut Paciente</label>
-                                <FormInput
-                                    value={rut}
-                                    onChange={(event)=> setRut(validador.checkRut(event.target.value))}
-                                    size="lg"
-                                    className="mb-3"
-                                    placeholder="XXXXXXXX-X" />                                                          
-
+                                <label>Paciente</label>
+                                
+                                    {
+                                        lPacientes.length === 0 ?
+                                        <FormSelect>
+                                        <option value={null}>No hay pacientes</option>
+                                        </FormSelect> :
+                                        <Select options={
+                                            lPacientes.slice().map((pac, index) => ({
+                                                value: pac,
+                                                label: pac.rut+" / "+pac.nombre
+                                            }))
+                                        }/>
+                                    }
+                                
                             </FormGroup>
                             <FormGroup>
                                 <FormInput 

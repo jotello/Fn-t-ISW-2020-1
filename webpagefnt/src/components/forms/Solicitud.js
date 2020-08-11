@@ -56,7 +56,7 @@ const Solicitud=({
                                         onChange={event => setPaciente(event.value)}
                                         options={
                                             lPacientes.slice().map((pac, index) => ({
-                                                value: pac,
+                                                value: pac.id,
                                                 label: pac.rut+" / "+pac.nombre
                                             }))
                                         }/>
@@ -69,7 +69,9 @@ const Solicitud=({
                                 onChange={(event) => setDescripcion(event.target.value)}
                                 />
                             </FormGroup>
-
+                            <FormGroup>
+                                <label></label>
+                            </FormGroup>
                         </Form>
                         <Link to="/solicitudes">
                         <Button 
@@ -78,7 +80,7 @@ const Solicitud=({
                             onClick={(event)=>onSubmit(
                                 {
                                     "paciente": paciente,
-                                    "descipcion": descripcion
+                                    "descripcion": descripcion
                                 })}
                             >Agregar</Button>
                         </Link>

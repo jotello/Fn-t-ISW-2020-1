@@ -1,11 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { NavItem} from "shards-react";
+import { NavLink as RouteNavLink } from "react-router-dom";
+import { NavItem, NavLink } from "shards-react";
 
 
 const SidebarURLItem = ({ item }) => (
   <NavItem>
-    <a href={item.to} className="NavLink">
+    <a href={item.to}><NavLink disabled tag={RouteNavLink} to={item.to}>
       {item.htmlBefore && (
         <div
           className="d-inline-block item-icon-wrapper"
@@ -19,7 +20,7 @@ const SidebarURLItem = ({ item }) => (
           dangerouslySetInnerHTML={{ __html: item.htmlAfter }}
         />
       )}
-    </a>
+    </NavLink></a>
   </NavItem>
 );
 

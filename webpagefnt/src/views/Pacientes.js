@@ -63,7 +63,7 @@ class Pacientes extends React.Component {
     <Row noGutters className="page-header py-4">
       <PageTitle sm="4" title="Lista de pacientes" subtitle="Pacientes" className="text-sm-left" />
     </Row>
-    <PopupboxContainer/>
+    
     {/* Default Light Table */}
     <Row>
     <Col>

@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -19,16 +20,17 @@ import org.springframework.web.bind.annotation.RestController;
 import Fnt.SolRec.Model.Horario;
 import Fnt.SolRec.Service.HorarioService;
 
+@CrossOrigin
 @RestController
 @RequestMapping("horario")
 public class HorarioController {
-    
+
 	@Autowired
 	private HorarioService horarioService;
 
 	/**
 	 * Obtener lista de Horarios
-	 * @return Iterable<Horario> 
+	 * @return Iterable<Horario>
      */
 	@GetMapping("")
 	public Iterable<Horario> getHorarios(){
@@ -54,7 +56,7 @@ public class HorarioController {
 	public Optional<Horario> getHorariobyId(@PathVariable("id") long id){
 		return horarioService.getbyId(id);
     }
-    
+
     /**
 	 * Se obtiene horario por lista de horarios (String)
 	 *
@@ -67,7 +69,7 @@ public class HorarioController {
 
 	/**
 	 * Modificar Horario
-     * 
+     *
      * @return ResponseEntity<Horario>
 	 */
 	 @PutMapping("/{id}")
@@ -96,7 +98,7 @@ public class HorarioController {
 
 	/**
 	 * Eliminar Horario
-     * 
+     *
      * @return ResponseEntity<String>
 	 */
 	@DeleteMapping("/{id}")

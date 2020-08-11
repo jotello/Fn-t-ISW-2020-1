@@ -9,10 +9,13 @@ import {
 const VerPaciente=({paciente})=>(
   <div>
     <Card small className='mb-4 pt-3'>
+      <h2>Paciente Individual:</h2>
         <CardHeader className="border-bottom text-center">
-        <h4 className="mb-0">{paciente.rut}</h4>
-        <h4 className="mb-0">{paciente.nombre}</h4>
-        <h3  className="mb-0">Notas</h3>
+        <h3  className="mb-0">Rut:</h3>
+        <p className="mb-0">{paciente.rut}</p>
+        <h3  className="mb-0">Nombre:</h3>
+        <p className="mb-0">{paciente.nombre}</p>
+        <h3  className="mb-0">Notas:</h3>
         <p>{paciente.notas}</p>
         </CardHeader>
     </Card>

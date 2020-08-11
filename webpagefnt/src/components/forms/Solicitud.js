@@ -97,7 +97,8 @@ const Solicitud=({
                             </FormGroup>
                             <FormGroup>
                                 <label>Información adicional</label>
-                                <FormTextarea 
+                                <FormTextarea
+                                lang="es" 
                                 onChange={(event) => setDescripcion(event.target.value)}
                                 />
                             </FormGroup>

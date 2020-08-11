@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 // Layout Types
 import { DefaultLayout } from "./layouts";
 
-// Route Views
+// Route Views sahdiahu
 import Pacientes from "./views/Pacientes";
 import BlogOverview from "./views/BlogOverview";
 import UserProfileLite from "./views/UserProfileLite";
@@ -17,6 +17,7 @@ import TeamsList from './views/TeamsList';
 import TeamForm from './views/TeamForm';
 import PacientesForms from './views/PacientesForms';
 import Solicitudes from './views/Solicitudes';
+import EditPaciente from './views/EditorPacienteForms';
 import SolicitudesForms from './views/SolicitudesForms';
 
 export default [
@@ -25,6 +26,12 @@ export default [
     exact: true,
     layout: DefaultLayout,
     component: () => <Redirect to="/blog-overview" />
+  },
+  {
+    path:"/editar-paciente",
+    layout: DefaultLayout,
+    component: EditPaciente ,
+    
   },
   {
     path: "/pacientes",

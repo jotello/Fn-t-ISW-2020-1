@@ -16,14 +16,17 @@ import {
 
 
 
-const EditarPaciente=({paciente})=({
-    onSubmit
-})=>{
-    const[id]=useState(paciente.id);
+const EditarPaciente=({
+    paciente,
+    onSubmit,
+ })=>{
+    console.log(paciente);
+    const[id,setId]=useState(paciente.id);
     const[rut,setRut]=useState(paciente.rut);
     const[nombre,setNombre]=useState(paciente.nombre);
     const[notas,setNotas]=useState(paciente.notas);
-
+    
+    //setNotas(paciente.notas);
     return(
         <Row>
             {/*Editor*/}
@@ -32,17 +35,19 @@ const EditarPaciente=({paciente})=({
                     <CardBody>
                         <Form className="add-new-paciente">
                         <FormGroup>
-                                <label>Rut</label>
+                                <label>Id</label>
                                 <FormInput
-                                    value={id}                                    
+                                    value={id}    
+                                    onChange={(event) => setId(event.target.value)}                                
                                     size="lg"
                                     className="mb-3"
+                                    
                                     placeholder="00" />
                             </FormGroup>
                             <FormGroup>
                                 <label>Rut</label>
                                 <FormInput
-                                    value={rut}
+                                    value={paciente.rut}
                                     onChange={(event) => setRut(validador.checkRut(event.target.value))}
                                     onInput={(event)=>setRut(validador.checkRut(event.target.value))}
                                     size="lg"
@@ -72,7 +77,7 @@ const EditarPaciente=({paciente})=({
                         <Button 
                             theme="primary"
                             className="mb-2 mr-1"
-                            onClick={(event)=>onSubmit({'rut':rut,'nombre':nombre,'notas':notas})}
+                            onClick={(event)=>onSubmit({id:'id','rut':rut,'nombre':nombre,'notas':notas})}
                             >Editar</Button>
                         </Link>
                     </CardBody>
@@ -88,5 +93,11 @@ EditarPaciente.propTypes={
 }
 EditarPaciente.defaultProps={
     onSubmit:()=>{},
+    paciente: {
+        id:"-1",
+        rut: "XX.XXX.XXX-X",
+        nombre: "Tulio Triviño",
+        notas: "Le tiene miedo a las Ballenas" 
+      }
 }
-export default Paciente;
+export default EditarPaciente;

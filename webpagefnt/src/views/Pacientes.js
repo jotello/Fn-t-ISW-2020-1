@@ -120,9 +120,16 @@ class Pacientes extends React.Component {
                       
                       </td>
                       <td>
-                      <Button theme="primary" className="mb-2 mr-1">
+                      <Link to={{
+                        pathname:"/editar-paciente",
+                        search:"?id=id_paciente",
+                        hash:"",
+                        state:{ id:pac.id},
+                        }} >
+                      <Button id={pac.id} theme="primary" className="mb-2 mr-1" >
                       Editar
                       </Button>
+                      </Link>
                       </td>
                       <td>
                       <Button id={pac.id + "delete"} onClick={() => this.handleDeletePacientes(pac.id)} theme="primary" className="mb-2 mr-1">

@@ -17,6 +17,7 @@ import TeamsList from './views/TeamsList';
 import TeamForm from './views/TeamForm';
 import PacientesForms from './views/PacientesForms';
 import Solicitudes from './views/Solicitudes';
+import EditPaciente from './views/EditorPacienteForms'
 
 export default [
   {
@@ -24,6 +25,12 @@ export default [
     exact: true,
     layout: DefaultLayout,
     component: () => <Redirect to="/blog-overview" />
+  },
+  {
+    path:"/editar-paciente",
+    layout: DefaultLayout,
+    component: EditPaciente ,
+    
   },
   {
     path: "/pacientes",

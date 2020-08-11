@@ -7,12 +7,14 @@ function getAll() {
 }
 
 function show(pacienteId) {
-    console.log(pacienteId);
     return api.get(`${basePath}/${pacienteId}`)
 }
 
 function create(data) {
     return api.post(`${basePath}`, data);
+}
+function update(data) {
+    return api.post(`${basePath}/${data.id}`, data);
 }
 function remove(id) {
     return api.delete(`${basePath}/${id}`);
@@ -22,6 +24,7 @@ const pacienteService = {
     getAll,
     show,
     create,
+    update,
     remove,
 };
 

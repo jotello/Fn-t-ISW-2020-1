@@ -1,7 +1,8 @@
 import React,{useState} from "react";
 import Select from "react-select";
 import PropTypes from "prop-types";
-import {DatePicker} from "react-datepicker";
+import DayPickerInput from "react-day-picker/DayPickerInput"
+import "react-day-picker/lib/style.css"
 import {Link} from "react-router-dom";
 import{
     Row,
@@ -32,6 +33,7 @@ const Solicitud=({
     const[descripcion,setDescripcion]=useState('');
 
     const[lPacientes,setLPacientes]=useState('');
+    const bloq = new Array(18).fill(0);
     pacienteService.getAll()
         .then((response) => {
             setLPacientes(response.data)
@@ -42,6 +44,9 @@ const Solicitud=({
     return(
 
         <Row>
+        <Card>
+            {}
+        </Card>
             {/* Editor */}
             <Col lg="9" md="12">
                 <Card small className="mb-3">
@@ -67,13 +72,34 @@ const Solicitud=({
                                 
                             </FormGroup>
                             <FormGroup>
+                                <label>Fecha</label>
+                                <div>
+                                <DayPickerInput onDayChange={(day) => setDate(
+                                    day.getDay()+"-"
+                                    +day.getMonth()+"-"
+                                    +day.getFullYear())}/>
+                                </div>
+                            </FormGroup>
+                            <FormGroup>
+                                <label>Bloques</label>
+                                <Select isMulti
+                                        onChange={event => setBloques(event.map(
+                                            (op) => {
+                                                return op.value
+                                            }
+                                        ))}
+                                        options={
+                                            bloq.map((val, index) => ({
+                                                value: index+1,
+                                                label: "Bloque "+(index+1)
+                                            }))
+                                        }/>
+                            </FormGroup>
+                            <FormGroup>
                                 <label>Información adicional</label>
                                 <FormTextarea 
                                 onChange={(event) => setDescripcion(event.target.value)}
                                 />
-                            </FormGroup>
-                            <FormGroup>
-                                <label>Fecha</label>
                             </FormGroup>
                         </Form>
                         <Link to="/solicitudes">
@@ -83,7 +109,8 @@ const Solicitud=({
                             onClick={(event)=>onSubmit(
                                 {
                                     "paciente": paciente,
-                                    "descripcion": descripcion
+                                    "descripcion": descripcion,
+                                    "bloques": bloques.map((b) => {return (date+" / "+b)})
                                 })}
                             >Agregar</Button>
                         </Link>

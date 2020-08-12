@@ -9,6 +9,11 @@ export default function() {
       title: "Solicitudes",
       to: "/solicitudes",
       htmlBefore: '<i class="material-icons">person</i>',
+    },
+    {
+      title: "Reservas",
+      to: "/reservas",
+      htmlBefore: '<i class="material-icons">person</i>',
     }
   ];
 }

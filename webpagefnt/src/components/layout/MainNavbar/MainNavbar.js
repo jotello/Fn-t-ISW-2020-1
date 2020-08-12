@@ -19,7 +19,6 @@ const MainNavbar = ({ layout, stickyTop }) => {
       <Container className="p-0">
         <Navbar type="light" className="align-items-stretch right">
           <NavbarNav />
-          <NavbarToggle/>
         </Navbar>
       </Container>
     </div>

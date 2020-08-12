@@ -90,11 +90,7 @@ class Solicitudes extends React.Component {
                       <td>{pac.id}</td>
                       <td>{pac.descripcion}</td>
                       <td>{dateformat(pac.dtEmision, "dd/mm/yyyy, HH:MM")}</td>
-                      <td>
-                      <Button theme="primary" className="mb-2 mr-1">
-                      Editar
-                      </Button>
-                      </td>
+                      
                       <td>
                       <Button id={pac.id + "delete"} onClick={() => this.handleDeleteSolicitudes(pac.id)} theme="primary" className="mb-2 mr-1">
                       Eliminar

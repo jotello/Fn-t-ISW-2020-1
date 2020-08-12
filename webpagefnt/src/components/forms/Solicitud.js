@@ -19,13 +19,15 @@ import pacienteService from "../../services/paciente.service";
 import equipoService from "../../services/equipo.service";
 import equipamientoService from "../../services/equipamiento.service";
 import sillonService from "../../services/sillon.service";
+import pabsalService from "../../services/pabsal.service";
 
 const flags = {
     paciente: true,
     equipo: true,
     equipamiento: true,
     sillon: true,
-
+    sala: true,
+    pabellon: true
 }
 
 
@@ -47,6 +49,8 @@ const Solicitud=({
     const[lEquipos, setLEquipos]=useState('');
     const[lEquipamientos, setLEquipamientos]=useState('');
     const[lSillones, setLSillones]=useState('');
+    const[lSalas, setLSalas]=useState('');
+    const[lPabellones, setLPabellones]=useState('');
 
     const bloq = new Array(18).fill(0);
     if (flags["paciente"]) pacienteService.getAll()
@@ -71,8 +75,21 @@ const Solicitud=({
         .then((response) => {
             setLSillones(response.data)
         
-            console.log(response)
         }).then(flags["sillon"] = false)
+        .catch((error) => console.log(error));
+    if (flags["sala"]) pabsalService.getAllSalas()
+        .then((response) => {
+            setLSalas(response.data)
+        
+            console.log(response)
+        }).then(flags["sala"] = false)
+        .catch((error) => console.log(error));
+    if (flags["pabellon"]) pabsalService.getAllPabellones()
+        .then((response) => {
+            setLPabellones(response.data)
+        
+            console.log(response)
+        }).then(flags["pabellon"] = false)
         .catch((error) => console.log(error));
     return(
 
@@ -178,7 +195,41 @@ const Solicitud=({
                                         options={
                                             lSillones.slice().map((si, index) => ({
                                                 value: si,
-                                                label: "Piso "+si.piso+"/"+si.id
+                                                label: "Piso "+si.piso+" / "+si.id
+                                            }))
+                                        }/>
+                                    }
+                            </FormGroup>
+                            <FormGroup>
+                                <label>Seleccionar Sala de Recuperación</label>
+                                    {
+                                        lSalas.length === 0 ?
+                                        <FormSelect>
+                                        <option value={null}>No hay salas</option>
+                                        </FormSelect> :
+                                        <Select 
+                                        onChange={event => setSalaRec(event.value)}
+                                        options={
+                                            lSalas.slice().map((sala, index) => ({
+                                                value: sala,
+                                                label: "Piso "+sala.piso+" / "+sala.numero
+                                            }))
+                                        }/>
+                                    }
+                            </FormGroup>
+                            <FormGroup>
+                                <label>Seleccionar Pabellon</label>
+                                    {
+                                        lPabellones.length === 0 ?
+                                        <FormSelect>
+                                        <option value={null}>No hay pabellones</option>
+                                        </FormSelect> :
+                                        <Select 
+                                        onChange={event => setPabellon(event.value)}
+                                        options={
+                                            lPabellones.slice().map((pab, index) => ({
+                                                value: pab,
+                                                label: pab.descripcion+" / "+pab.sala
                                             }))
                                         }/>
                                     }
@@ -204,7 +255,10 @@ const Solicitud=({
                                 let tipoEquipo = equipo === null ? null : equipo.tag;
                                 let idSillon = sillon === null ? 0 : sillon.id;
                                 let tipoSillon = sillon === null ? null : "Piso "+sillon.piso+"/"+sillon.id;
-                                
+                                let idSala = salaRec === null ? 0 : salaRec.id;
+                                let tipoSala = salaRec === null ? null : "Piso "+salaRec.piso+" / "+salaRec.numero;
+                                let idPab = pabellon === null ? 0 : pabellon.id;
+                                let tipoPab = pabellon === null ? null : pabellon.descripcion+" / "+pabellon.sala;
                                 onSubmit(
                                 {
                                     "paciente": paciente,
@@ -216,7 +270,10 @@ const Solicitud=({
                                     "tipoEquipamento": tipoEquipamento,
                                     "sillon": idSillon,
                                     "tipoSillon": tipoSillon,
-
+                                    "salaRecuperacion": idSala,
+                                    "tipoSalaRecuperacion": tipoSala,
+                                    "pabellon": idPab,
+                                    "tipoPabellon": tipoPab,
                                 })}}
                             >Agregar</Button>
                         </Link>

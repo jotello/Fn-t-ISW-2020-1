@@ -27,7 +27,7 @@ export default function() {
       },
       {
         title: "Personal y Equipos",
-        to: "https://chopinhauer.herokuapp.com//",
+        to: "https://chopinhauer-web.herokuapp.com/",
         htmlBefore: '<i class="material-icons">view_module</i>',
       },
     ];

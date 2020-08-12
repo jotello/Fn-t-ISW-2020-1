@@ -5,6 +5,7 @@ const endpoints = {
     equipos: 'https://chopinhauer.herokuapp.com',
     equipamientos: 'https://equipment-service.herokuapp.com',
     sillones: 'https://opelcorsa-bd.herokuapp.com',
+    PabSal: 'https://inventory-is-full-back.herokuapp.com'
 };
 
 export const api = {development: axios.create({
@@ -21,5 +22,9 @@ equipamientos: axios.create({
 }),
 sillones: axios.create({
     baseURL: endpoints['sillones'],
+    timeout: 20000,
+}),
+PabSal: axios.create({
+    baseURL: endpoints['PabSal'],
     timeout: 20000,
 })}

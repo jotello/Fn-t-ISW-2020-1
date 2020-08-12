@@ -19,6 +19,7 @@ import PacientesForms from './views/PacientesForms';
 import Solicitudes from './views/Solicitudes';
 import EditPaciente from './views/EditorPacienteForms';
 import SolicitudesForms from './views/SolicitudesForms';
+import Reservas from './views/Reservas'
 
 export default [
   {
@@ -47,6 +48,11 @@ export default [
     path: "/solicitudes",
     layout: DefaultLayout,
     component: Solicitudes
+  },
+  {
+    path: "/reservas",
+    layout: DefaultLayout,
+    component: Reservas
   },
   {
     path: "/agregar-solicitud",

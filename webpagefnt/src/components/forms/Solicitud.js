@@ -96,7 +96,7 @@ const Solicitud=({
                                 <Select isMulti
                                         onChange={event => setBloques(event.map(
                                             (op) => {
-                                                return op.value
+                                                return (date+" / "+op.value)
                                             }
                                         ))}
                                         options={
@@ -156,16 +156,24 @@ const Solicitud=({
                         <Button 
                             theme="primary"
                             className="mb-2 mr-1"
-                            onClick={(event)=>onSubmit(
+                            onClick={(event)=>{
+                                let idEquipamiento = equipamiento === null ? 0:
+                                equipamiento.slice().map((e) => {return e.id});
+                                let tipoEquipamento = equipamiento === null ? null:
+                                equipamiento.slice().map((e) => {return e.name}).join("||");
+                                let idEquipo = equipo === null ? 0 : equipo.id;
+                                let tipoEquipo = equipo === null ? null : equipo.tag;
+
+                                onSubmit(
                                 {
                                     "paciente": paciente,
                                     "descripcion": descripcion,
-                                    "bloques": bloques.map((b) => {return (date+" / "+b)}),
-                                    "idEquipo": equipo.id,
-                                    "tipoEqipo": equipo.tag,
-                                    "idEquipamiento": equipamiento.slice().map((e) => {return e.id}),
-                                    "tipoEquipamento": equipamiento.slice().map((e) => {return e.name}).join("||"),
-                                })}
+                                    "bloques": bloques,
+                                    "idEquipo": idEquipo,
+                                    "tipoEqipo": tipoEquipo,
+                                    "idEquipamiento": idEquipamiento,
+                                    "tipoEquipamento": tipoEquipamento,
+                                })}}
                             >Agregar</Button>
                         </Link>
                     </CardBody>

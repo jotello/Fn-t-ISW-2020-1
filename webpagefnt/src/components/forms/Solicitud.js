@@ -16,7 +16,8 @@ import{
     Button,
     FormTextarea,
 } from "shards-react";
-import pacienteService from "../../services/paciente.service"
+import pacienteService from "../../services/paciente.service";
+import equipoService from "../../services/equipo.service";
 
 const Solicitud=({
     onSubmit
@@ -33,6 +34,7 @@ const Solicitud=({
     const[descripcion,setDescripcion]=useState('');
 
     const[lPacientes,setLPacientes]=useState('');
+    const[lEquipos, setLEquipos]=useState('');
     const bloq = new Array(18).fill(0);
     pacienteService.getAll()
         .then((response) => {
@@ -40,7 +42,12 @@ const Solicitud=({
             console.log(response)
         })
         .catch((error) => console.log(error));
-
+    equipoService.getAll()
+        .then((response) => {
+            setLEquipos(response.data)
+            console.log(response)
+        })
+        .catch((error) => console.log(error));
     return(
 
         <Row>
@@ -96,6 +103,23 @@ const Solicitud=({
                                         }/>
                             </FormGroup>
                             <FormGroup>
+                                <label>Seleccionar Equipo</label>
+                                    {
+                                        lEquipos.length === 0 ?
+                                        <FormSelect>
+                                        <option value={null}>No hay equipos</option>
+                                        </FormSelect> :
+                                        <Select 
+                                        onChange={event => setEquipo(event.value)}
+                                        options={
+                                            lEquipos.slice().map((eq, index) => ({
+                                                value: eq,
+                                                label: eq.id+" / "+eq.tag
+                                            }))
+                                        }/>
+                                    }
+                            </FormGroup>
+                            <FormGroup>
                                 <label>Información adicional</label>
                                 <FormTextarea
                                 lang="es" 
@@ -111,7 +135,9 @@ const Solicitud=({
                                 {
                                     "paciente": paciente,
                                     "descripcion": descripcion,
-                                    "bloques": bloques.map((b) => {return (date+" / "+b)})
+                                    "bloques": bloques.map((b) => {return (date+" / "+b)}),
+                                    "idEquipo": equipo.id,
+                                    "tipoEqipo": equipo.tag,
                                 })}
                             >Agregar</Button>
                         </Link>

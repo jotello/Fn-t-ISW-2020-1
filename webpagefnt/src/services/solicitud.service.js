@@ -1,25 +1,25 @@
 import { api } from '../helpers';
 
 const basePath = 'solicitud';
-
+const apii = api["development"];
 function getAll() {
-    return api.get(`${basePath}`);
+    return apii.get(`${basePath}`);
 }
 
 function getPendientes() {
-    return api.get(`${basePath}/pendientes`);
+    return apii.get(`${basePath}/pendientes`);
 }
 
 function show(solicitudId) {
     console.log(solicitudId);
-    return api.get(`${basePath}/${solicitudId}`)
+    return apii.get(`${basePath}/${solicitudId}`)
 }
 
 function create(data) {
-    return api.post(`${basePath}`, data);
+    return apii.post(`${basePath}`, data);
 }
 function remove(id) {
-    return api.delete(`${basePath}/${id}`);
+    return apii.delete(`${basePath}/${id}`);
 }
 
 const solicitudService = {

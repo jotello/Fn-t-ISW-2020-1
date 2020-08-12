@@ -1,21 +1,21 @@
 import { api } from '../helpers';
 
 const basePath = 'paciente';
-
+const apii = api["development"];
 function getAll() {
-    return api.get(`${basePath}`);
+    return apii.get(`${basePath}`);
 }
 
 function show(pacienteId) {
     console.log(pacienteId);
-    return api.get(`${basePath}/${pacienteId}`)
+    return apii.get(`${basePath}/${pacienteId}`)
 }
 
 function create(data) {
-    return api.post(`${basePath}`, data);
+    return apii.post(`${basePath}`, data);
 }
 function remove(id) {
-    return api.delete(`${basePath}/${id}`);
+    return apii.delete(`${basePath}/${id}`);
 }
 
 const reservaService = {

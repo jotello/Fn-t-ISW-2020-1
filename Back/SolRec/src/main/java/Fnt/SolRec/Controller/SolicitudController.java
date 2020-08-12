@@ -239,7 +239,7 @@ public class SolicitudController {
     public ResponseEntity<Solicitud> reservar(
     @PathVariable("id") Long id){
         Optional<Solicitud> solicitud = solicitudService.getbyId(id);
-        if (!solicitud.isPresent() || solicitud.get().getEstado()!="Solicitado") {
+        if (!solicitud.isPresent()) {
             return ResponseEntity
             .status(HttpStatus.NOT_FOUND)
             .body(null);

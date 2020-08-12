@@ -21,12 +21,17 @@ function create(data) {
 function remove(id) {
     return apii.delete(`${basePath}/${id}`);
 }
+function reservar(id){
+    console.log(id);
+    return apii.put(`${basePath}/${id}/reservar`);
+}
 
 const solicitudService = {
     getAll,
     getPendientes,
     show,
     create,
+    reservar,
     remove,
 };
 
